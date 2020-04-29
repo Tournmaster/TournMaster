@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -38,7 +39,10 @@ public class Search extends AppCompatActivity {
     private SharedPreferences mPreferences;
     private String token;
 
-
+    public void openDialog() {
+        DialogFilter dialogfilter = new DialogFilter().newInstance(this);
+        dialogfilter.show(getSupportFragmentManager(),"dialog_filter");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,13 +96,18 @@ public class Search extends AppCompatActivity {
 
         // Aquesta funció serveix per omplir la llista, ull tota la list està en
         // Mèmoria del dispositiu
-        populateList();
+        populateList(null,null,null);
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("DIALOGFilter", "" + resultCode);
+
     }
 
+    public void populateList(String genere,String position,String prefsmash){
 
-    private void populateList(){
-
-        Call<List<User>> call_get_players = userService.getUsers(token);
+        Call<List<User>> call_get_players = userService.getUsers(token,genere,position,prefsmash);
         call_get_players.enqueue(new Callback<List<User>>() {
             @Override
             public void onResponse(Call<List<User>> call, Response<List<User>> response) {
@@ -181,6 +190,15 @@ public class Search extends AppCompatActivity {
         });
 
         return super.onCreateOptionsMenu(menu);
+    }
+    @Override public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_filter) {
+            openDialog();
+            Log.d(TAG, "Here we need to launch settings...");
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 

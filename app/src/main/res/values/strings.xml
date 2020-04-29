@@ -61,5 +61,9 @@
     <string name="Selecciona_Imagen">Selecciona una imagen</string>
     <string name="Abrir">Abrir Galeria</string>
     <string name="Cancelar">Cancelar</string>
+    <string name="Selecionar_filtros">Seleccionar filtros</string>
+    <string name="buscar_sexo">Buscar por género</string>
+    <string name="buscar_posicion">Buscar por posición </string>
+    <string name="buscar_golpe">Buscar por golpe favorito </string>
 
 </resources>

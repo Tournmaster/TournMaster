@@ -1,7 +1,12 @@
 package cat.udl.tidic.amb.tournmaster;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -16,16 +21,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.JsonObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
 import cat.udl.tidic.amb.tournmaster.preferences.PreferencesProvider;
 import cat.udl.tidic.amb.tournmaster.services.UserService;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -56,7 +66,7 @@ public class Perfil extends AppCompatActivity {
 
 
 
-
+    private String TAG = "Perfil";
 
     private UserService userService;
     private SharedPreferences mPreferences;
@@ -100,6 +110,8 @@ public class Perfil extends AppCompatActivity {
                 return false;
             }
         });
+
+        readPermission();
 
         img_photo = findViewById(R.id.img_perfil);
         user = findViewById(R.id.text_users);
@@ -428,13 +440,89 @@ public class Perfil extends AppCompatActivity {
         return true;
     }
     public void openDialog() {
-        DialogFilter dialogFilter = new DialogFilter();
-        dialogFilter.show(getSupportFragmentManager(),"example_dialog");
+        DialogImage dialogImage = new DialogImage().newInstance(this);
+        dialogImage.show(getSupportFragmentManager(),"example_dialog");
     }
-    private void cargarImagen(){
+
+
+
+    private boolean readPermission() {
+        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (shouldShowRequestPermissionRationale(
+                    Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                Toast.makeText(getApplicationContext(),"I need access to images", Toast.LENGTH_LONG);
+            }
+
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    21);
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    public void cargarImagen() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/");
-        startActivityForResult(intent.createChooser(intent,"Selecciona la imagen"), 10);
+        startActivityForResult(intent, 10);
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("DIALOG", "" + resultCode);
+        if (resultCode == RESULT_OK) {
+            String token;
+            this.mPreferences = PreferencesProvider.providePreferences();
+            token = this.mPreferences.getString("token", "");
+
+
+            userService = RetrofitClientInstance.
+                    getRetrofitInstance().create(UserService.class);
+
+            Uri path = data.getData();
+            img_photo.setImageURI(path);
+            File file1 = new File(getRealPathFromURI(path, this));
+            RequestBody requestFile2 = RequestBody.create(MediaType.parse(getContentResolver().getType(data.getData())), file1);
+            MultipartBody.Part body2 = MultipartBody.Part.createFormData("image_file", file1.getName(), requestFile2);
+
+            Call<ResponseBody> call_update = userService.uploadImage(token, body2);
+            call_update.enqueue(new Callback<ResponseBody>() {
+
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    Log.d(TAG, "Success " + response.code());
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Log.d(TAG, "Error " + t.getMessage());
+                }
+            });
+
+        }
+
+
+    }
+
+    public String getRealPathFromURI(Uri uri, Activity activity) {
+        if (uri == null) {
+            return null;
+        }
+        String[] projection = {MediaStore.Images.Media.DATA};
+        Cursor cursor = activity.getContentResolver().query(uri, projection, null, null, null);
+        if (cursor != null) {
+            int column_index = cursor
+                    .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        }
+        return uri.getPath();
+    }
+
+
 
 }
