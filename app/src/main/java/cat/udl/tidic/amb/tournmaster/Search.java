@@ -1,5 +1,6 @@
 package cat.udl.tidic.amb.tournmaster;
 
+import android.app.usage.UsageEvents;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -30,7 +31,7 @@ public class Search extends AppCompatActivity {
 
     private static final String TAG = "PlayersListActivity";
     private UserService userService;
-
+    public static final int EDIT_EVENT = 2;
     private RecyclerView playersListView;
     private UserAdapter userAdapter;
     ArrayList<User> players_data = new ArrayList<>();
@@ -81,7 +82,15 @@ public class Search extends AppCompatActivity {
         playersListView.setLayoutManager(new LinearLayoutManager(this));
         userAdapter = new UserAdapter(new UserDiffCallback());
         playersListView.setAdapter(userAdapter);
-
+        userAdapter.setOnItemClickListener(new UserAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(User user) {
+                Log.d(TAG, user.getUsername());
+                Intent intent = new Intent(Search.this, PublicProfile.class);
+                intent.putExtra(PublicProfile.EXTRA_USERNAME, user.getUsername());
+                startActivityForResult(intent, EDIT_EVENT);
+            }
+        });
         userService = RetrofitClientInstance.
                 getRetrofitInstance().create(UserService.class);
 
@@ -93,8 +102,8 @@ public class Search extends AppCompatActivity {
         // Aquesta funció serveix per omplir la llista, ull tota la list està en
         // Mèmoria del dispositiu
         populateList();
-    }
 
+    }
 
     private void populateList(){
 
@@ -116,6 +125,8 @@ public class Search extends AppCompatActivity {
                     // Notificar problemes amb la red
             }
         });
+
+
 
     }
     private void EntrarPerfil(){

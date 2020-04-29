@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 class UserAdapter extends ListAdapter<User, UserAdapter.UserHolder> {
 
     private final static String TAG = "UserAdapter";
+    private OnItemClickListener eventItemListener;
 
     protected UserAdapter(@NonNull DiffUtil.ItemCallback<User> diffCallback) {
         super(diffCallback);
@@ -26,6 +27,7 @@ class UserAdapter extends ListAdapter<User, UserAdapter.UserHolder> {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.player_row_item, parent, false);
         return new UserHolder(itemView);
+
     }
 
     @Override
@@ -40,17 +42,29 @@ class UserAdapter extends ListAdapter<User, UserAdapter.UserHolder> {
         return getItem(position);
     }
 
-
-
-
     class UserHolder extends RecyclerView.ViewHolder {
         private TextView usernameTextView;
 
         public UserHolder(View itemView) {
             super(itemView);
             usernameTextView = itemView.findViewById(R.id.playerName);
-
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (eventItemListener != null && position != RecyclerView.NO_POSITION) {
+                        eventItemListener.onItemClick(getItem(position));
+                    }
+                }
+            });
         }
 
+    }
+    public interface OnItemClickListener {
+        void onItemClick(User user);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.eventItemListener = listener;
     }
 }
