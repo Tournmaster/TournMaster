@@ -59,12 +59,12 @@ public class DialogFilter extends AppCompatDialogFragment {
 
     private void init(){
         rootView = LayoutInflater.from(getContext()).inflate(R.layout.layout_dialgfilter, null, false);
-//        image_female = rootView.findViewById(R.id.img_female);
-//        image_male = rootView.findViewById(R.id.img_male);
-//        image_left = rootView.findViewById(R.id.img_left);
-//        image_rigth= rootView.findViewById(R.id.img_rigth);
-//        female = rootView.findViewById(R.id.rdbtn_female);
-//        male= rootView.findViewById(R.id.rdbtn_male);
+        image_female = rootView.findViewById(R.id.img_female);
+        image_male = rootView.findViewById(R.id.img_male);
+        image_left = rootView.findViewById(R.id.img_left);
+        image_rigth= rootView.findViewById(R.id.img_rigth);
+        female = rootView.findViewById(R.id.rdbtn_female);
+        male= rootView.findViewById(R.id.rdbtn_male);
         left = rootView.findViewById(R.id.rdbtn_left);
         rigth = rootView.findViewById(R.id.rdbtn_right);
 
