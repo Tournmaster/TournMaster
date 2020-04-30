@@ -39,6 +39,9 @@ class UserAdapter extends ListAdapter<User, UserAdapter.UserHolder> {
     public User getUserAt(int position){
         Log.d(TAG, "Position: "+ position);
         Log.d(TAG, "username: "+ getItem(position).getUsername());
+        Log.d(TAG, "Sexo: "+  getItem(position).getSex());
+        Log.d(TAG, "PrefSmash: "+ getItem(position).getPrefSmash());
+        Log.d(TAG, "Posicion: "+ getItem(position).getPosicion());
         return getItem(position);
     }
 
