@@ -28,11 +28,17 @@ public class User {
     private String PrefSmash;
     @SerializedName("position")
     private String Posicion;
+    @SerializedName("rol")
+    private String Rol;
+    @SerializedName("matchname")
+    private String Matchname;
+    @SerializedName("club")
+    private String Club;
     // @JordiMateoUdl: Aqui tots els camps amb SerializedName aixi no caldrà treballar amb JSON...
 
 
 
-    public User( String username, String email, String name, String surname, String genere,String password,String prefSmash, String posicion) {
+    public User( String username, String email, String name, String surname, String genere,String password,String prefSmash, String posicion,String rol,String matchname,String club) {
         this.username = username;
         this.email = email;
         this.name = name;
@@ -41,6 +47,33 @@ public class User {
         this.password= password;
         this.Posicion= posicion;
         this.PrefSmash = prefSmash;
+        this.Rol = rol;
+        this.Matchname = matchname;
+        this.Club = club;
+    }
+
+    public String getMatchname() {
+        return Matchname;
+    }
+
+    public void setMatchname(String matchname) {
+        Matchname = matchname;
+    }
+
+    public String getClub() {
+        return Club;
+    }
+
+    public void setClub(String club) {
+        Club = club;
+    }
+
+    public String getRol() {
+        return Rol;
+    }
+
+    public void setRol(String rol) {
+        Rol = rol;
     }
 
     public String getPrefSmash() {

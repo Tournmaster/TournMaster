@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -26,6 +28,18 @@ public class ProfilePublic extends AppCompatActivity {
     private SharedPreferences mPreferences;
     private TextView sex;
     private String TAG ="PUBLIC";
+    private TextView name;
+    private TextView golpeprf;
+    private TextView position;
+    private TextView mail;
+    private TextView matchname;
+    private TextView TiempoJugado;
+    private TextView club;
+    private ImageView girl;
+    private ImageView boy;
+    private TextView rol;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +90,18 @@ public class ProfilePublic extends AppCompatActivity {
         token = this.mPreferences.getString("token", "");
         nom = findViewById(R.id.text_users);
         sex = findViewById(R.id.text_sexo);
+        boy = findViewById(R.id.img_boys);
+        girl = findViewById(R.id.img_girls);
+        boy = findViewById(R.id.img_boys);
+        girl = findViewById(R.id.img_girls);
+        name = findViewById(R.id.edit_nombre);
+        mail = findViewById(R.id.edit_email);
+        position = findViewById(R.id.edit_position);
+        matchname = findViewById(R.id.edit_marchname);
+        golpeprf = findViewById(R.id.edit_prefsmash);
+        club = findViewById(R.id.edit_club);
+        rol = findViewById(R.id.text_rol);
+
 
 
         nom.setText(intent.getStringExtra(EXTRA_USERNAME));
@@ -92,11 +118,49 @@ public class ProfilePublic extends AppCompatActivity {
 
                      if(user.getGenere().equals("M")){
                          Log.d("TAG","ENTRA");
-                         sex.setText("Hombre");
+                         boy.setVisibility(View.VISIBLE);
                      }
                      else{
-                         sex.setText("Mujer");
+                         girl.setVisibility(View.VISIBLE);
                      }
+
+                     if(user.getPosicion().equals("L")){
+                         position.setText("Izquierda");
+                     }
+                     else{
+                         position.setText("Derecha");
+                     }
+                     name.setText(user.getName());
+                     mail.setText(user.getEmail());
+                     matchname.setText(user.getMatchname());
+                     club.setText(user.getClub());
+                     golpeprf.setText(user.getPrefSmash());
+                     if(user.getPrefSmash().equals("S")){
+                         golpeprf.setText("Saque");
+                     }
+                     if(user.getPrefSmash().equals("R")){
+                         golpeprf.setText("Right");
+                     }
+                     if(user.getPrefSmash().equals("L")){
+                         golpeprf.setText("Reves");
+                     }
+                     if(user.getPrefSmash().equals("G")){
+                         golpeprf.setText("Globo");
+                     }
+                     if(user.getPrefSmash().equals("C")){
+                         golpeprf.setText("Cortada");
+                     }
+                     if(user.getPrefSmash().equals("M")){
+                         golpeprf.setText("Smash");
+                     }
+                     if(user.getPrefSmash().equals("V")){
+                         golpeprf.setText("Volea");
+                     }
+
+                     rol.setText(user.getRol());
+
+
+
 
 
                  }

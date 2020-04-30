@@ -56,11 +56,11 @@
             android:id="@+id/text_sexo"
             android:layout_width="75dp"
             android:layout_height="26dp"
-            android:layout_marginTop="84dp"
+            android:layout_marginTop="112dp"
             android:text="@string/g_nero"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.377"
+            app:layout_constraintHorizontal_bias="0.047"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -76,6 +76,43 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.684" />
+
+        <ImageView
+            android:id="@+id/img_girls"
+            android:layout_width="30dp"
+            android:layout_height="36dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/text_rol"
+            app:layout_constraintHorizontal_bias="0.259"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.94"
+            app:srcCompat="@drawable/ic_female" />
+
+        <ImageView
+            android:id="@+id/img_boys"
+            android:layout_width="28dp"
+            android:layout_height="34dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.258"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.924"
+            app:srcCompat="@drawable/ic_male" />
+
+        <TextView
+            android:id="@+id/ed_rolaso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.934"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.88" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
