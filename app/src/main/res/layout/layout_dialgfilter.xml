@@ -149,17 +149,10 @@
                     app:srcCompat="@drawable/ic_left_position" />
 
                 <RadioButton
-                    android:id="@+id/rdbtn_left"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/rd_left"
+                    android:layout_width="45dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:layout_weight="1"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.372"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/img_left"
-                    app:layout_constraintVertical_bias="0.0" />
+                    android:layout_weight="1" />
 
             </LinearLayout>
 
@@ -184,15 +177,13 @@
                     app:srcCompat="@drawable/ic_rigth_position" />
 
                 <RadioButton
-                    android:id="@+id/rdbtn_rigth"
+                    android:id="@+id/btn_rigth"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:layout_weight="1"
-                    app:layout_constraintBottom_toTopOf="@+id/txt_golpes"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.383"
-                    app:layout_constraintStart_toEndOf="@+id/rdbtn_left"
                     app:layout_constraintTop_toBottomOf="@+id/img_rigth"
                     app:layout_constraintVertical_bias="0.0" />
 

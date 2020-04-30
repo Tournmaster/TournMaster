@@ -4,12 +4,12 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
-import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,11 +25,10 @@ public class DialogFilter extends AppCompatDialogFragment {
     private String genero;
     private String position;
     private String golpe;
-    private Spinner combobox;
     private RadioButton female;
     private RadioButton male;
-    private RadioButton rigth;
-    private RadioButton left;
+    private RadioButton posrigth;
+    private RadioButton posleft;
     private UserService userService;
     private SharedPreferences mPreferences;
     private String TAG = "DIALOGFILTER";
@@ -46,6 +45,48 @@ public class DialogFilter extends AppCompatDialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         init();
+        female = rootView.findViewById(R.id.rdbtn_female);
+        male= rootView.findViewById(R.id.rdbtn_male);
+        posleft = rootView.findViewById(R.id.rd_left);
+        posrigth = rootView.findViewById(R.id.btn_rigth);
+
+        female.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                male.setChecked(false);
+                female.setChecked(true);
+                genero = "F";
+
+            }
+        });
+        male.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                female.setChecked(false);
+                male.setChecked(true);
+                genero = "M";
+
+            }
+        });
+        posleft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                posrigth.setChecked(false);
+                posleft.setChecked(true);
+                position = "L";
+
+            }
+        });
+        posrigth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                posleft.setChecked(false);
+                posrigth.setChecked(true);
+                position = "R";
+
+            }
+        });
+
         AlertDialog alertDialog = new AlertDialog.Builder(getContext())
                 .setView(rootView)
                 .setTitle("Selecciona uno de los filtros")
@@ -63,10 +104,7 @@ public class DialogFilter extends AppCompatDialogFragment {
         image_male = rootView.findViewById(R.id.img_male);
         image_left = rootView.findViewById(R.id.img_left);
         image_rigth= rootView.findViewById(R.id.img_rigth);
-        female = rootView.findViewById(R.id.rdbtn_female);
-        male= rootView.findViewById(R.id.rdbtn_male);
-        left = rootView.findViewById(R.id.rdbtn_left);
-        rigth = rootView.findViewById(R.id.rdbtn_right);
+
 
 
 
@@ -75,8 +113,9 @@ public class DialogFilter extends AppCompatDialogFragment {
 
     private void onDialogShow(AlertDialog dialog) {
         Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+
         positiveButton.setOnClickListener( v -> {
-            activity.populateList(null,null,null);
+            activity.populateList(genero,position,null);
             dismiss();
         });
     }

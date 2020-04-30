@@ -114,7 +114,7 @@ public class Search extends AppCompatActivity {
     }
 
     public void populateList(String genere,String position,String prefsmash){
-
+        Log.d(TAG,""+genere);
         Call<List<User>> call_get_players = userService.getUsers(token,genere,position,prefsmash);
         call_get_players.enqueue(new Callback<List<User>>() {
             @Override
