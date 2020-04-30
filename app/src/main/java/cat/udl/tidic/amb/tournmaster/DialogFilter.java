@@ -70,6 +70,7 @@ public class DialogFilter extends AppCompatDialogFragment {
 
 
 
+
     }
 
     private void onDialogShow(AlertDialog dialog) {

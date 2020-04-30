@@ -1,13 +1,11 @@
 package cat.udl.tidic.amb.tournmaster;
 
-import android.app.usage.UsageEvents;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -90,8 +88,8 @@ public class Search extends AppCompatActivity {
             @Override
             public void onItemClick(User user) {
                 Log.d(TAG, user.getUsername());
-                Intent intent = new Intent(Search.this, PublicProfile.class);
-                intent.putExtra(PublicProfile.EXTRA_USERNAME, user.getUsername());
+                Intent intent = new Intent(Search.this, ProfilePublic.class);
+                intent.putExtra(ProfilePublic.EXTRA_USERNAME, user.getUsername());
                 startActivityForResult(intent, EDIT_EVENT);
             }
         });
@@ -139,35 +137,8 @@ public class Search extends AppCompatActivity {
 
 
     }
-    private void EntrarPerfil(){
 
 
-
-    }
-
-
-
-
-    public void Inico (View view){
-
-        Intent intent = new Intent(Search.this,Inicio.class);
-        startActivity(intent);
-    }
-    public void partidos (View view){
-
-        Intent intent = new Intent(Search.this,Partidos.class);
-        startActivity(intent);
-    }
-    public void search (View view){
-
-        Intent intent = new Intent(Search.this,Search.class);
-        startActivity(intent);
-    }
-    public void perfil (View view){
-
-        Intent intent = new Intent(Search.this,Perfil.class);
-        startActivity(intent);
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

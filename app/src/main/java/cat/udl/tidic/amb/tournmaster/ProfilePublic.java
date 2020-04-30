@@ -3,23 +3,30 @@ package cat.udl.tidic.amb.tournmaster;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Inicio extends AppCompatActivity {
-    private Intent intent;
+public class ProfilePublic extends AppCompatActivity {
+    public static final String EXTRA_USERNAME =
+            "cat.udl.tidic.amd.tournmaster.EXTRA_USERNAME";
+    private TextView nom;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inicio);
+        setContentView(R.layout.activity_profile_public);
+        Intent intent = getIntent();
+        if (intent.hasExtra(EXTRA_USERNAME)) {
+            setTitle("Perfil Publico");
 
+        } else {
+            setTitle("Add Event");
+        }
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        bottomNavigationView.setSelectedItemId(R.id.Inicio);
-
+        bottomNavigationView.setSelectedItemId(R.id.Buscar);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -49,31 +56,9 @@ public class Inicio extends AppCompatActivity {
                 return false;
             }
         });
-        intent = getIntent();
 
+        nom = findViewById(R.id.text_nom);
+        nom.setText(EXTRA_USERNAME);
 
-
-
-
-    }
-    public void Inico (View view){
-
-        Intent intent = new Intent(Inicio.this,Inicio.class);
-        startActivity(intent);
-    }
-    public void partidos (View view){
-
-        Intent intent = new Intent(Inicio.this,Partidos.class);
-        startActivity(intent);
-    }
-    public void search (View view){
-
-        Intent intent = new Intent(Inicio.this,Search.class);
-        startActivity(intent);
-    }
-    public void perfil (View view){
-
-        Intent intent = new Intent(Inicio.this,Perfil.class);
-        startActivity(intent);
     }
 }

@@ -65,5 +65,10 @@
     <string name="buscar_sexo">Buscar por género</string>
     <string name="buscar_posicion">Buscar por posición </string>
     <string name="buscar_golpe">Buscar por golpe favorito </string>
+    <string name="Inicio">Inicio</string>
+    <string name="Partidos">Partidos</string>
+    <string name="Buscar">Buscar</string>
+    <string name="Perfil">Perfil</string>
+
 
 </resources>

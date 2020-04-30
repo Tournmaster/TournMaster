@@ -4,19 +4,19 @@
     <item
         android:id="@+id/Inicio"
         android:icon="@drawable/ic_emoji_events_white_24dp"
-        android:title="Inicio" />
+        android:title="@string/Inicio" />
     <item
         android:id="@+id/Partidos"
         android:icon="@drawable/ic_sports_tennis_24px"
-        android:title="Partidos" />
+        android:title="@string/Partidos" />
 
     <item
         android:id="@+id/Buscar"
         android:icon="@drawable/ic_search_black_24dp"
-        android:title="Buscar" />
+        android:title="@string/Buscar" />
     <item
         android:id="@+id/Perfil"
         android:icon="@drawable/ic_account_circle_black_24dp"
-        android:title="Perfil" />
+        android:title="@string/Perfil" />
 
 </menu>
