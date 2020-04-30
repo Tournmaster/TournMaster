@@ -191,7 +191,28 @@ public class Perfil extends AppCompatActivity {
                     String user_prefplayer = userJson.get("matchname").toString();
                     matchaname.setText(atributs(user_prefplayer));
                     String user_smash = userJson.get("prefsmash").toString();
-                    prefsmash.setText(atributs(user_smash));
+                    user_smash = user_smash.substring(1,user_smash.length()-1);
+                    if(user_smash.equals("S")){
+                        prefsmash.setText("Saque");
+                    }
+                    if(user_smash.equals("R")){
+                        prefsmash.setText("Right");
+                    }
+                    if(user_smash.equals("L")){
+                        prefsmash.setText("Reves");
+                    }
+                    if(user_smash.equals("G")){
+                        prefsmash.setText("Globo");
+                    }
+                    if(user_smash.equals("C")){
+                        prefsmash.setText("Cortada");
+                    }
+                    if(user_smash.equals("M")){
+                        prefsmash.setText("Smash");
+                    }
+                    if(user_smash.equals("V")){
+                        prefsmash.setText("Volea");
+                    }
                     String user_club = userJson.get("club").toString();
                     club.setText(atributs(user_club));
                     String user_phone= (userJson.get("phone").toString());
@@ -202,6 +223,7 @@ public class Perfil extends AppCompatActivity {
                     String user_sex= userJson.get("genere").toString();
                     isValidEmailAddress(mail.getText().toString());
                     user_sex = user_sex.substring(1,user_sex.length()-1);
+
                     Log.d("TAG",user_sex);
 
                     if(user_sex.equals("M")){
@@ -247,6 +269,8 @@ public class Perfil extends AppCompatActivity {
                     else{
                         rol.setText("Jugador");
                     }
+
+
                     actualizar.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
