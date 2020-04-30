@@ -35,7 +35,7 @@ public interface UserService {
         Call<List<User>> getUsers(@Header("Authorization") String auth_token,@Query("genere") String genere,@Query("position") String position,@Query("prefsmash") String prefsmash);
 
         @GET("/users/show/{username}")
-        Call<List<User>> getPerfilPublico(@Header("Authorization") String auth_token, @Path("username") String username);
+        Call<User> getPerfilPublico(@Header("Authorization") String auth_token, @Path("username") String username);
 //----------------------------------------------------------------------------------------------------------
 
         //PETICIONES POST

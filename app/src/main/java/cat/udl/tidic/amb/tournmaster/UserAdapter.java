@@ -4,6 +4,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,6 +35,41 @@ class UserAdapter extends ListAdapter<User, UserAdapter.UserHolder> {
     public void onBindViewHolder(@NonNull UserHolder holder, int position) {
         User current_player = (User) getItem(position);
         holder.usernameTextView.setText(current_player.toString());
+        if(current_player.getGenere().equals("M")){
+            Log.d("TAG","ENTRA");
+            holder.male.setVisibility(View.VISIBLE);
+        }
+        else{
+            holder.female.setVisibility(View.VISIBLE);
+        }
+        if(current_player.getPosicion().equals("L")){
+            Log.d("TAG","ENTRA");
+            holder.left.setVisibility(View.VISIBLE);
+        }
+        else{
+            holder.rigth.setVisibility(View.VISIBLE);
+        }
+        if(current_player.getPrefSmash().equals("S")){
+            holder.golpe.setText("Saque");
+        }
+        if(current_player.getPrefSmash().equals("R")){
+            holder.golpe.setText("Right");
+        }
+        if(current_player.getPrefSmash().equals("L")){
+            holder.golpe.setText("Reves");
+        }
+        if(current_player.getPrefSmash().equals("G")){
+            holder.golpe.setText("Globo");
+        }
+        if(current_player.getPrefSmash().equals("C")){
+            holder.golpe.setText("Cortada");
+        }
+        if(current_player.getPrefSmash().equals("M")){
+            holder.golpe.setText("Smash");
+        }
+        if(current_player.getPrefSmash().equals("V")){
+            holder.golpe.setText("Volea");
+        }
     }
 
     public User getUserAt(int position){
@@ -44,10 +80,21 @@ class UserAdapter extends ListAdapter<User, UserAdapter.UserHolder> {
 
     class UserHolder extends RecyclerView.ViewHolder {
         private TextView usernameTextView;
+        private TextView usergenere;
+        private ImageView female;
+        private ImageView male;
+        private ImageView left;
+        private ImageView rigth;
+        private TextView golpe;
 
         public UserHolder(View itemView) {
             super(itemView);
             usernameTextView = itemView.findViewById(R.id.playerName);
+            female = itemView.findViewById(R.id.img_girl);
+            male = itemView.findViewById(R.id.img_boy);
+            left = itemView.findViewById(R.id.img_psIz);
+            rigth = itemView.findViewById(R.id.img_pscDere);
+            golpe = itemView.findViewById(R.id.text_golpuser);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

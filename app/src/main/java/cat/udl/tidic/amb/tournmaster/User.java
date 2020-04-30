@@ -24,18 +24,39 @@ public class User {
     private String photo;
     @SerializedName("password")
     private String password;
-
+    @SerializedName("prefsmash")
+    private String PrefSmash;
+    @SerializedName("position")
+    private String Posicion;
     // @JordiMateoUdl: Aqui tots els camps amb SerializedName aixi no caldrà treballar amb JSON...
 
 
 
-    public User( String username, String email, String name, String surname, String genere,String password) {
+    public User( String username, String email, String name, String surname, String genere,String password,String prefSmash, String posicion) {
         this.username = username;
         this.email = email;
         this.name = name;
         this.surname = surname;
         this.genere = genere;
         this.password= password;
+        this.Posicion= posicion;
+        this.PrefSmash = prefSmash;
+    }
+
+    public String getPrefSmash() {
+        return PrefSmash;
+    }
+
+    public void setPrefSmash(String prefSmash) {
+        PrefSmash = prefSmash;
+    }
+
+    public String getPosicion() {
+        return Posicion;
+    }
+
+    public void setPosicion(String posicion) {
+        Posicion = posicion;
     }
 
     public String getUsername() {
