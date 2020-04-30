@@ -30,75 +30,83 @@
 
             <TextView
                 android:id="@+id/playerName"
-                android:layout_width="268dp"
-                android:layout_height="21dp"
+                android:layout_width="267dp"
+                android:layout_height="22dp"
+                android:layout_marginTop="4dp"
+                android:gravity="center_horizontal"
                 android:maxLines="1"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.236"
                 app:layout_constraintStart_toEndOf="@+id/photo"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/img_girl"
-                android:layout_width="16dp"
-                android:layout_height="33dp"
+                android:layout_width="45dp"
+                android:layout_height="71dp"
+                android:layout_marginTop="4dp"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.03"
+                app:layout_constraintHorizontal_bias="0.843"
                 app:layout_constraintStart_toEndOf="@+id/photo"
                 app:layout_constraintTop_toBottomOf="@+id/playerName"
                 app:srcCompat="@drawable/ic_female" />
 
             <ImageView
                 android:id="@+id/img_boy"
-                android:layout_width="24dp"
-                android:layout_height="27dp"
+                android:layout_width="45dp"
+                android:layout_height="71dp"
                 android:layout_marginTop="4dp"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.031"
+                app:layout_constraintHorizontal_bias="0.843"
                 app:layout_constraintStart_toEndOf="@+id/photo"
                 app:layout_constraintTop_toBottomOf="@+id/playerName"
                 app:srcCompat="@drawable/ic_male" />
 
             <ImageView
                 android:id="@+id/img_pscDere"
-                android:layout_width="86dp"
-                android:layout_height="52dp"
+                android:layout_width="71dp"
+                android:layout_height="45dp"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.94"
+                app:layout_constraintHorizontal_bias="0.268"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
                 app:srcCompat="@drawable/ic_rigth_position" />
 
             <TextView
                 android:id="@+id/text_positions"
-                android:layout_width="55dp"
-                android:layout_height="26dp"
+                android:layout_width="69dp"
+                android:layout_height="30dp"
+                android:gravity="center"
                 android:text="Posicion:"
+                android:textSize="14sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.676"
+                app:layout_constraintHorizontal_bias="0.272"
                 app:layout_constraintStart_toStartOf="@+id/photo"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.378" />
+                app:layout_constraintVertical_bias="0.436" />
 
             <TextView
                 android:id="@+id/text_golpepref"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="36dp"
+                android:gravity="center"
                 android:text="Golpe favorito:"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.206"
+                app:layout_constraintHorizontal_bias="0.587"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/playerName"
-                app:layout_constraintVertical_bias="0.058" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.439" />
 
             <ImageView
                 android:id="@+id/img_psIz"
@@ -107,22 +115,24 @@
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/img_pscDere"
-                app:layout_constraintHorizontal_bias="0.972"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@+id/text_golpepref"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.509"
+                app:layout_constraintVertical_bias="1.0"
                 app:srcCompat="@drawable/ic_left_position" />
 
             <TextView
                 android:id="@+id/text_golpuser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
+                android:gravity="center"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.183"
+                app:layout_constraintHorizontal_bias="0.471"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/playerName" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.792" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
