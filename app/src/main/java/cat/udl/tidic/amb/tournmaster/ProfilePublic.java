@@ -22,8 +22,6 @@ public class ProfilePublic extends AppCompatActivity {
         if (intent.hasExtra(EXTRA_USERNAME)) {
             setTitle("Perfil Publico");
 
-        } else {
-            setTitle("Add Event");
         }
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.Buscar);
@@ -58,7 +56,7 @@ public class ProfilePublic extends AppCompatActivity {
         });
 
         nom = findViewById(R.id.text_nom);
-        nom.setText(EXTRA_USERNAME);
+        nom.setText(intent.getStringExtra(EXTRA_USERNAME));
 
     }
 }

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">TournMaster</string>
     <string name="login">Login!</string>
     <string name="username">username</string>
@@ -47,7 +47,8 @@
     <string name="posici_n_en_la_pista">Posición en la pista</string>
     <string name="tu_pareja_favorita">Tu pareja favorita</string>
     <string name="tiempo_jugado">Tiempo jugado</string>
-    <string name="golpeo_preferido">Golpeo preferido</string>
+    <string name="tiempo_jugado2">Tiempo jugado:</string>
+    <string name="golpeo_preferido">Golpeo preferido:</string>
     <string name="tu_club">Tu club</string>
     <string name="licencia">Licencia</string>
     <string name="Actualizar_perfil">Actualizar_perfil</string>
@@ -68,7 +69,14 @@
     <string name="Inicio">Inicio</string>
     <string name="Partidos">Partidos</string>
     <string name="Buscar">Buscar</string>
-    <string name="Perfil">Perfil</string>
+    <string name="Perfil">Perfil:</string>
+    <string name="email">Email:</string>
+    <string name="compa_ero_favorito">Compañero favorito:</string>
+    <string name="posici_n">Posición:</string>
+    <string name="su_club">Club:</string>
+    <string name="g_nero">Género:</string>
+    <string name="nombre">Nombre:</string>
+    <string name="su_rol">Rol:</string>
 
 
 </resources>
