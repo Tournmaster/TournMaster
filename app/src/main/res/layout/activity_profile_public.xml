@@ -19,21 +19,21 @@
 
         <TextView
             android:id="@+id/text_users"
-            android:layout_width="159dp"
-            android:layout_height="33dp"
-            android:layout_marginTop="32dp"
+            android:layout_width="178dp"
+            android:layout_height="59dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="104dp"
             android:text="@string/nombre_usuario"
-            android:textSize="15sp"
+            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.939"
+            app:layout_constraintHorizontal_bias="0.984"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="113dp"
-            android:layout_height="74dp"
+            android:layout_width="105dp"
+            android:layout_height="79dp"
             android:contentDescription="@string/tourmasterlogo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -56,10 +56,11 @@
             android:id="@+id/text_sexo"
             android:layout_width="75dp"
             android:layout_height="26dp"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="84dp"
             android:text="@string/g_nero"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.074"
+            app:layout_constraintHorizontal_bias="0.377"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -68,12 +69,13 @@
             android:layout_width="82dp"
             android:layout_height="23dp"
             android:text="@string/su_rol"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.462"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.746" />
+            app:layout_constraintVertical_bias="0.684" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
@@ -101,17 +103,18 @@
 
     <TextView
         android:id="@+id/text_datos"
-        android:layout_width="71dp"
-        android:layout_height="22dp"
+        android:layout_width="68dp"
+        android:layout_height="32dp"
         android:gravity="center"
         android:text="Datos:"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_nom"
-        app:layout_constraintVertical_bias="0.03" />
+        app:layout_constraintVertical_bias="0.032" />
 
     <LinearLayout
         android:id="@+id/Layout_Email"
@@ -131,7 +134,8 @@
             android:layout_width="150dp"
             android:layout_height="30dp"
             android:gravity="center"
-            android:text="@string/email" />
+            android:text="@string/email"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/edit_email"
@@ -139,11 +143,12 @@
             android:layout_height="30dp"
             android:layout_marginStart="60dp"
             android:gravity="center"
-            android:text="@string/email" />
+            android:text="@string/email"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/Layout NOmbre"
+        android:id="@+id/Layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -160,7 +165,8 @@
             android:layout_width="150dp"
             android:layout_height="30dp"
             android:gravity="center"
-            android:text="@string/nombre" />
+            android:text="@string/nombre"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/edit_nombre"
@@ -168,7 +174,8 @@
             android:layout_height="30dp"
             android:layout_marginStart="60dp"
             android:gravity="center"
-            android:text="@string/nombre" />
+            android:text="@string/nombre"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -188,7 +195,8 @@
             android:layout_width="150dp"
             android:layout_height="30dp"
             android:gravity="center"
-            android:text="@string/posici_n" />
+            android:text="@string/posici_n"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/edit_position"
@@ -196,7 +204,8 @@
             android:layout_height="30dp"
             android:layout_marginStart="60dp"
             android:gravity="center"
-            android:text="@string/posici_n" />
+            android:text="@string/posici_n"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -218,7 +227,8 @@
             android:layout_width="150dp"
             android:layout_height="30dp"
             android:gravity="center"
-            android:text="@string/compa_ero_favorito" />
+            android:text="@string/compa_ero_favorito"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/edit_marchname"
@@ -226,7 +236,8 @@
             android:layout_height="30dp"
             android:layout_marginStart="60dp"
             android:gravity="center"
-            android:text="@string/compa_ero_favorito" />
+            android:text="@string/compa_ero_favorito"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -247,7 +258,8 @@
             android:layout_width="150dp"
             android:layout_height="30dp"
             android:gravity="center"
-            android:text="@string/tiempo_jugado2" />
+            android:text="@string/tiempo_jugado2"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/edit_timeplay"
@@ -255,7 +267,8 @@
             android:layout_height="30dp"
             android:layout_marginStart="60dp"
             android:gravity="center"
-            android:text="@string/tiempo_jugado" />
+            android:text="@string/tiempo_jugado"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -277,7 +290,8 @@
             android:layout_width="150dp"
             android:layout_height="30dp"
             android:gravity="center"
-            android:text="@string/golpeo_preferido" />
+            android:text="@string/golpeo_preferido"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/edit_prefsmash"
@@ -285,12 +299,13 @@
             android:layout_height="30dp"
             android:layout_marginStart="60dp"
             android:gravity="center"
-            android:text="@string/golpeo_preferido" />
+            android:text="@string/golpeo_preferido"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/Layout club"
+        android:id="@+id/Layout_club"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="340dp"
@@ -306,7 +321,8 @@
             android:layout_width="150dp"
             android:layout_height="30dp"
             android:gravity="center"
-            android:text="@string/su_club" />
+            android:text="@string/su_club"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/edit_club"
@@ -314,7 +330,8 @@
             android:layout_height="30dp"
             android:layout_marginStart="60dp"
             android:gravity="center"
-            android:text="@string/su_club" />
+            android:text="@string/su_club"
+            android:textSize="18sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
