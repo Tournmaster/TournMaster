@@ -133,31 +133,38 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="142dp"
             android:layout_gravity="center"
             android:baselineAligned="false"
             android:gravity="center"
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="212dp"
-                android:layout_height="match_parent"
+                android:layout_width="177dp"
+                android:layout_height="142dp"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/img_left"
-                    android:layout_width="78dp"
-                    android:layout_height="102dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="113dp"
                     android:layout_weight="1"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.348"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.441"
-                    app:srcCompat="@drawable/ic_left_position" />
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/img_left"
+                        android:layout_width="match_parent"
+                        android:layout_height="118dp"
+                        android:layout_weight="1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.348"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.441"
+                        app:srcCompat="@drawable/ic_left_position" />
+                </LinearLayout>
 
                 <RadioButton
 
@@ -172,32 +179,33 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="212dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/img_rigth"
-                    android:layout_width="78dp"
-                    android:layout_height="103dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.678"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.442"
-                    app:srcCompat="@drawable/ic_rigth_position" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="113dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/img_rigth"
+                        android:layout_width="196dp"
+                        android:layout_height="122dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_rigth_position" />
+
+                </LinearLayout>
 
                 <RadioButton
-
                     android:id="@+id/Boto_dere"
                     android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center" />
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
 
             </LinearLayout>
 
@@ -207,7 +215,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="213dp"
         android:layout_gravity="center"
         android:gravity="center"
         android:orientation="vertical">
@@ -255,35 +263,41 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.149">
 
-                    <CheckBox
-                        android:id="@+id/g_Globo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="@string/globo" />
+                    <LinearLayout
+                        android:layout_width="92dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-                    <CheckBox
-                        android:id="@+id/g_Derecha"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="@string/right" />
+                        <CheckBox
+                            android:id="@+id/g_Globo"
+                            android:layout_width="92dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/globo" />
 
-                    <CheckBox
-                        android:id="@+id/g_Saque"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="@string/saque" />
+                        <CheckBox
+                            android:id="@+id/g_Derecha"
+                            android:layout_width="92dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/right" />
+
+                        <CheckBox
+                            android:id="@+id/g_Saque"
+                            android:layout_width="92dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/saque" />
+                    </LinearLayout>
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="104dp"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:orientation="vertical"
@@ -292,29 +306,36 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.175">
 
-                    <CheckBox
-                        android:id="@+id/g_Izquier"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="@string/reves" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-                    <CheckBox
-                        android:id="@+id/g_Mate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="@string/smash" />
+                        <CheckBox
+                            android:id="@+id/g_Izquier"
+                            android:layout_width="91dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/reves" />
 
-                    <CheckBox
-                        android:id="@+id/g_Volea"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="@string/volea" />
+                        <CheckBox
+                            android:id="@+id/g_Mate"
+                            android:layout_width="88dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/smash" />
+
+                        <CheckBox
+                            android:id="@+id/g_Volea"
+                            android:layout_width="89dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/volea" />
+                    </LinearLayout>
+
                 </LinearLayout>
             </LinearLayout>
 

@@ -372,7 +372,7 @@ public class Perfil extends AppCompatActivity {
     }
     public void Inico (View view){
 
-        Intent intent = new Intent(Perfil.this,Inicio.class);
+        Intent intent = new Intent(Perfil.this,MainActivity.class);
         startActivity(intent);
     }
 

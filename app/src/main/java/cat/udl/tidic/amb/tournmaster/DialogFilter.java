@@ -4,11 +4,11 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 
@@ -42,7 +42,15 @@ public class DialogFilter extends AppCompatDialogFragment {
     private CheckBox g_cortada;
     private CheckBox g_volea;
     private CheckBox g_mate;
-
+    private String prefsmash;
+    private String drcha;
+    private String rves;
+    private String globs;
+    private String saq;
+    private String crtada;
+    private String vlea;
+    private String mte;
+    private  String optionTwo;
 
     public static DialogFilter newInstance(Search activity){
         DialogFilter dialog = new DialogFilter();
@@ -65,6 +73,79 @@ public class DialogFilter extends AppCompatDialogFragment {
         g_mate = rootView.findViewById(R.id.g_Mate);
         g_saque = rootView.findViewById(R.id.g_Saque);
         g_volea = rootView.findViewById(R.id.g_Volea);
+
+        g_derecha.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+               @Override
+               public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+                   drcha="R";
+                   prefsmash="R";
+                   optionTwo="S";
+
+               }
+           }
+        );
+        g_glovo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+                 @Override
+                 public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+
+                     prefsmash="G";
+
+
+                 }
+             }
+        );
+        g_izquierda.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+                 @Override
+                 public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+
+                     prefsmash="L";
+
+                 }
+             }
+        );
+        g_saque.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+               @Override
+               public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+
+                   prefsmash="S";
+
+               }
+           }
+        );
+        g_cortada.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+               @Override
+               public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+
+                   prefsmash="C";
+
+               }
+           }
+        );
+        g_volea.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+                 @Override
+                 public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+
+                     prefsmash="V";
+
+                 }
+             }
+        );
+        g_mate.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+               @Override
+               public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+
+                   prefsmash="M";
+
+               }
+           }
+        );
 
         female.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,7 +186,7 @@ public class DialogFilter extends AppCompatDialogFragment {
 
         AlertDialog alertDialog = new AlertDialog.Builder(getContext())
                 .setView(rootView)
-                .setTitle("Selecciona uno de los filtros")
+                .setTitle("")
                 .setCancelable(false)
                 .setPositiveButton("Buscar", null)
                 .create();
@@ -127,7 +208,7 @@ public class DialogFilter extends AppCompatDialogFragment {
         Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
 
         positiveButton.setOnClickListener( v -> {
-            activity.populateList(genero,position,null);
+            activity.populateList(genero,position,prefsmash);
             dismiss();
         });
     }

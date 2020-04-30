@@ -57,8 +57,8 @@ public class ProfilePublic extends AppCompatActivity {
             }
         });
 
-        nom = findViewById(R.id.text_nom);
-        nom.setText(EXTRA_USERNAME);
+        nom = findViewById(R.id.text_users);
+        nom.setText(intent.getStringExtra(EXTRA_USERNAME));
 
     }
 }
