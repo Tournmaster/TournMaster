@@ -56,10 +56,10 @@
             android:id="@+id/text_sexo"
             android:layout_width="75dp"
             android:layout_height="26dp"
-            android:layout_marginTop="88dp"
+            android:layout_marginTop="120dp"
             android:text="@string/g_nero"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.413"
+            app:layout_constraintHorizontal_bias="0.074"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -70,9 +70,10 @@
             android:text="@string/su_rol"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.422"
+            app:layout_constraintHorizontal_bias="0.462"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.746" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
@@ -99,152 +100,53 @@
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     <TextView
-        android:id="@+id/text_club"
-        android:layout_width="101dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="72dp"
-        android:text="@string/su_club"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
-        app:layout_constraintVertical_bias="0.955" />
-
-    <TextView
-        android:id="@+id/text_marchname"
-        android:layout_width="96dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="72dp"
-        android:text="@string/compa_ero_favorito"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
-        app:layout_constraintVertical_bias="0.551" />
-
-    <TextView
-        android:id="@+id/text_email"
-        android:layout_width="95dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="72dp"
-        android:text="@string/email"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
-        app:layout_constraintVertical_bias="0.283" />
-
-    <TextView
-        android:id="@+id/text_timeplay"
-        android:layout_width="107dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="72dp"
-        android:text="@string/tiempo_jugado2"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
-        app:layout_constraintVertical_bias="0.687" />
-
-    <TextView
-        android:id="@+id/text_position"
-        android:layout_width="94dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="72dp"
-        android:text="@string/posici_n"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
-        app:layout_constraintVertical_bias="0.411" />
-
-    <TextView
-        android:id="@+id/text_prefsmash"
-        android:layout_width="106dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="72dp"
-        android:text="@string/golpeo_preferido"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
-        app:layout_constraintVertical_bias="0.827" />
-
-    <TextView
-        android:id="@+id/edit_marchname"
-        android:layout_width="96dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="196dp"
-        android:text="@string/compa_ero_favorito"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
-        app:layout_constraintVertical_bias="0.551" />
-
-    <TextView
-        android:id="@+id/edit_position"
-        android:layout_width="94dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="196dp"
-        android:text="@string/posici_n"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
-        app:layout_constraintVertical_bias="0.411" />
-
-    <TextView
-        android:id="@+id/edit_email"
-        android:layout_width="95dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="196dp"
-        android:text="@string/email"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
-        app:layout_constraintVertical_bias="0.283" />
-
-    <TextView
-        android:id="@+id/edit_timeplay"
-        android:layout_width="107dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="196dp"
-        android:text="@string/tiempo_jugado"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
-        app:layout_constraintVertical_bias="0.687" />
-
-    <TextView
-        android:id="@+id/edit_club"
-        android:layout_width="101dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="196dp"
-        android:text="@string/su_club"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
-        app:layout_constraintVertical_bias="0.955" />
-
-    <TextView
-        android:id="@+id/edit_prefsmash"
-        android:layout_width="106dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="196dp"
-        android:text="@string/golpeo_preferido"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
-        app:layout_constraintVertical_bias="0.827" />
-
-    <TextView
         android:id="@+id/text_datos"
         android:layout_width="71dp"
         android:layout_height="22dp"
+        android:gravity="center"
         android:text="Datos:"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.455"
+        app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_nom"
-        app:layout_constraintVertical_bias="0.046" />
+        app:layout_constraintVertical_bias="0.03" />
 
     <LinearLayout
+        android:id="@+id/Layout_Email"
         android:layout_width="0dp"
-        android:layout_height="65dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="108dp"
+        android:background="#9AC293"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+        <TextView
+            android:id="@+id/text_email"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="@string/email" />
+
+        <TextView
+            android:id="@+id/edit_email"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="60dp"
+            android:gravity="center"
+            android:text="@string/email" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Layout NOmbre"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -254,18 +156,165 @@
         app:layout_constraintVertical_bias="0.126">
 
         <TextView
-            android:id="@+id/edit_nombre"
-            android:layout_width="94dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="196dp"
+            android:id="@+id/text_nombre"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:gravity="center"
             android:text="@string/nombre" />
 
         <TextView
-            android:id="@+id/text_nombre"
-            android:layout_width="94dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="72dp"
+            android:id="@+id/edit_nombre"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="60dp"
+            android:gravity="center"
             android:text="@string/nombre" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Layput_Posicion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="144dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+        <TextView
+            android:id="@+id/text_position"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="@string/posici_n" />
+
+        <TextView
+            android:id="@+id/edit_position"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="60dp"
+            android:gravity="center"
+            android:text="@string/posici_n" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Layput_Amigo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="188dp"
+        android:background="#9AC293"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+        <TextView
+            android:id="@+id/text_marchname"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="@string/compa_ero_favorito" />
+
+        <TextView
+            android:id="@+id/edit_marchname"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="60dp"
+            android:gravity="center"
+            android:text="@string/compa_ero_favorito" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Layout_Tiempo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="240dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+        <TextView
+            android:id="@+id/text_timeplay"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="@string/tiempo_jugado2" />
+
+        <TextView
+            android:id="@+id/edit_timeplay"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="60dp"
+            android:gravity="center"
+            android:text="@string/tiempo_jugado" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Layout_Golpe"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="288dp"
+        android:background="#9AC293"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+        <TextView
+            android:id="@+id/text_prefsmash"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="@string/golpeo_preferido" />
+
+        <TextView
+            android:id="@+id/edit_prefsmash"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="60dp"
+            android:gravity="center"
+            android:text="@string/golpeo_preferido" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Layout club"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="340dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+        <TextView
+            android:id="@+id/text_club"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="@string/su_club" />
+
+        <TextView
+            android:id="@+id/edit_club"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="60dp"
+            android:gravity="center"
+            android:text="@string/su_club" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
