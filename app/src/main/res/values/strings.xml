@@ -69,6 +69,14 @@
     <string name="Partidos">Partidos</string>
     <string name="Buscar">Buscar</string>
     <string name="Perfil">Perfil</string>
+    <string name="smash">Smash</string>
+    <string name="reves">Reves</string>
+    <string name="volea">Volea</string>
+    <string name="globo">Globo</string>
+    <string name="cortada">Cortada</string>
+    <string name="saque">Saque</string>
+    <string name="right">Right</string>
+    <string name="female_sex">female_Sex</string>
 
 
 </resources>

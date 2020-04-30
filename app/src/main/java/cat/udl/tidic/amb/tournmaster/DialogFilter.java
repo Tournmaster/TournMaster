@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 
@@ -34,6 +35,14 @@ public class DialogFilter extends AppCompatDialogFragment {
     private String TAG = "DIALOGFILTER";
     private Search activity;
     private View rootView;
+    private CheckBox g_derecha;
+    private CheckBox g_izquierda;
+    private CheckBox g_glovo;
+    private CheckBox g_saque;
+    private CheckBox g_cortada;
+    private CheckBox g_volea;
+    private CheckBox g_mate;
+
 
     public static DialogFilter newInstance(Search activity){
         DialogFilter dialog = new DialogFilter();
@@ -47,8 +56,15 @@ public class DialogFilter extends AppCompatDialogFragment {
         init();
         female = rootView.findViewById(R.id.rdbtn_female);
         male= rootView.findViewById(R.id.rdbtn_male);
-        posleft = rootView.findViewById(R.id.rd_left);
-        posrigth = rootView.findViewById(R.id.btn_rigth);
+        posleft = rootView.findViewById(R.id.Boto_esq);
+        posrigth = rootView.findViewById(R.id.Boto_dere);
+        g_derecha = rootView.findViewById(R.id.g_Derecha);
+        g_izquierda = rootView.findViewById(R.id.g_Izquier);
+        g_cortada = rootView.findViewById(R.id.g_Cortada);
+        g_glovo = rootView.findViewById(R.id.g_Globo);
+        g_mate = rootView.findViewById(R.id.g_Mate);
+        g_saque = rootView.findViewById(R.id.g_Saque);
+        g_volea = rootView.findViewById(R.id.g_Volea);
 
         female.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,10 +120,6 @@ public class DialogFilter extends AppCompatDialogFragment {
         image_male = rootView.findViewById(R.id.img_male);
         image_left = rootView.findViewById(R.id.img_left);
         image_rigth= rootView.findViewById(R.id.img_rigth);
-
-
-
-
 
     }
 
