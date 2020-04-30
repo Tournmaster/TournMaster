@@ -34,8 +34,6 @@ public class ProfilePublic extends AppCompatActivity {
         if (intent.hasExtra(EXTRA_USERNAME)) {
             setTitle("Perfil Publico");
 
-        } else {
-            setTitle("Add Event");
         }
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.Buscar);
@@ -73,10 +71,12 @@ public class ProfilePublic extends AppCompatActivity {
         userService = RetrofitClientInstance.
                 getRetrofitInstance().create(UserService.class);
 
+
         this.mPreferences = PreferencesProvider.providePreferences();
         token = this.mPreferences.getString("token", "");
         nom = findViewById(R.id.text_users);
         sex = findViewById(R.id.text_sexo);
+
 
         nom.setText(intent.getStringExtra(EXTRA_USERNAME));
 
