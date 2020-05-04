@@ -8,5 +8,11 @@
       app:showAsAction="always|collapseActionView"
       app:actionViewClass="androidx.appcompat.widget.SearchView"/>
 
+    <item android:id="@+id/action_filter"
+        android:title="Search"
+        android:icon="@drawable/ic_filter_list_black_24dp"
+        app:showAsAction="always|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget."/>
+
 
 </menu>

@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button login = findViewById(R.id.inciarButton);
         Button register = findViewById(R.id.registerButton);
-
+        getSupportActionBar().hide();
 
     }
 

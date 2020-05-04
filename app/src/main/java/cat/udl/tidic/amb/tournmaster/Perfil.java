@@ -1,11 +1,16 @@
 package cat.udl.tidic.amb.tournmaster;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -22,11 +27,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.JsonObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import cat.udl.tidic.amb.tournmaster.preferences.PreferencesProvider;
 import cat.udl.tidic.amb.tournmaster.services.UserService;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -57,7 +68,7 @@ public class Perfil extends AppCompatActivity {
 
 
 
-
+    private String TAG = "Perfil";
 
     private UserService userService;
     private SharedPreferences mPreferences;
@@ -92,12 +103,17 @@ public class Perfil extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(),
                                 Perfil.class));
                         overridePendingTransition(0,0);
+
+
+
                         return true;
 
                 }
                 return false;
             }
         });
+
+        readPermission();
 
         img_photo = findViewById(R.id.img_perfil);
         user = findViewById(R.id.text_users);
@@ -123,7 +139,7 @@ public class Perfil extends AppCompatActivity {
 
         img_photo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                cargarImagen();
+                openDialog();
             }
         });
 
@@ -175,16 +191,39 @@ public class Perfil extends AppCompatActivity {
                     String user_prefplayer = userJson.get("matchname").toString();
                     matchaname.setText(atributs(user_prefplayer));
                     String user_smash = userJson.get("prefsmash").toString();
-                    prefsmash.setText(atributs(user_smash));
+                    user_smash = user_smash.substring(1,user_smash.length()-1);
+                    if(user_smash.equals("S")){
+                        prefsmash.setText("Saque");
+                    }
+                    if(user_smash.equals("R")){
+                        prefsmash.setText("Right");
+                    }
+                    if(user_smash.equals("L")){
+                        prefsmash.setText("Reves");
+                    }
+                    if(user_smash.equals("G")){
+                        prefsmash.setText("Globo");
+                    }
+                    if(user_smash.equals("C")){
+                        prefsmash.setText("Cortada");
+                    }
+                    if(user_smash.equals("M")){
+                        prefsmash.setText("Smash");
+                    }
+                    if(user_smash.equals("V")){
+                        prefsmash.setText("Volea");
+                    }
                     String user_club = userJson.get("club").toString();
                     club.setText(atributs(user_club));
                     String user_phone= (userJson.get("phone").toString());
                     phone.setText(atributs(user_phone));
-
+                    isValidPhoneNumber(phone.getText().toString());
                     String user_mail = userJson.get("email").toString();
                     mail.setText(atributs(user_mail));
                     String user_sex= userJson.get("genere").toString();
+                    isValidEmailAddress(mail.getText().toString());
                     user_sex = user_sex.substring(1,user_sex.length()-1);
+
                     Log.d("TAG",user_sex);
 
                     if(user_sex.equals("M")){
@@ -230,6 +269,8 @@ public class Perfil extends AppCompatActivity {
                     else{
                         rol.setText("Jugador");
                     }
+
+
                     actualizar.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -355,24 +396,10 @@ public class Perfil extends AppCompatActivity {
     }
     public void Inico (View view){
 
-        Intent intent = new Intent(Perfil.this,Inicio.class);
+        Intent intent = new Intent(Perfil.this,MainActivity.class);
         startActivity(intent);
     }
-    public void partidos (View view){
 
-        Intent intent = new Intent(Perfil.this,Partidos.class);
-        startActivity(intent);
-    }
-    public void search (View view){
-
-        Intent intent = new Intent(Perfil.this,Search.class);
-        startActivity(intent);
-    }
-    public void perfil (View view){
-
-        Intent intent = new Intent(Perfil.this,Perfil.class);
-        startActivity(intent);
-    }
     public void editar(View view){
         mail.setEnabled(true);
         sex.setEnabled(true);
@@ -419,22 +446,120 @@ public class Perfil extends AppCompatActivity {
         left.setVisibility(View.INVISIBLE);
 
     }
-    private void cargarImagen(){
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.perfil_button,menu);
+        return true;
+    }
+    public void openDialog() {
+        DialogImage dialogImage = new DialogImage().newInstance(this);
+        dialogImage.show(getSupportFragmentManager(),"example_dialog");
+    }
+
+
+
+    private boolean readPermission() {
+        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Should we show an explanation?
+            if (shouldShowRequestPermissionRationale(
+                    Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                Toast.makeText(getApplicationContext(),"I need access to images", Toast.LENGTH_LONG);
+            }
+
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    21);
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    public void cargarImagen() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/");
-        startActivityForResult(intent.createChooser(intent,"Selecciona la imagen"), 10);
+        startActivityForResult(intent, 10);
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode==RESULT_OK){
+        Log.d("DIALOG", "" + resultCode);
+        if (resultCode == RESULT_OK) {
+            String token;
+            this.mPreferences = PreferencesProvider.providePreferences();
+            token = this.mPreferences.getString("token", "");
+
+
+            userService = RetrofitClientInstance.
+                    getRetrofitInstance().create(UserService.class);
+
             Uri path = data.getData();
             img_photo.setImageURI(path);
-            System.out.println(path);
-            
+            File file1 = new File(getRealPathFromURI(path, this));
+            RequestBody requestFile2 = RequestBody.create(MediaType.parse(getContentResolver().getType(data.getData())), file1);
+            MultipartBody.Part body2 = MultipartBody.Part.createFormData("image_file", file1.getName(), requestFile2);
+
+            Call<ResponseBody> call_update = userService.uploadImage(token, body2);
+            call_update.enqueue(new Callback<ResponseBody>() {
+
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                    Log.d(TAG, "Success " + response.code());
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Log.d(TAG, "Error " + t.getMessage());
+                }
+            });
+
         }
+
+
     }
+
+    public String getRealPathFromURI(Uri uri, Activity activity) {
+        if (uri == null) {
+            return null;
+        }
+        String[] projection = {MediaStore.Images.Media.DATA};
+        Cursor cursor = activity.getContentResolver().query(uri, projection, null, null, null);
+        if (cursor != null) {
+            int column_index = cursor
+                    .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        }
+        return uri.getPath();
+    }
+    public boolean isValidEmailAddress(String email){
+        final String MAIL_PATTERN =
+                "^[\\w-_.+]*[\\w-_.]@([\\w]+\\.)+[\\w]+[\\w]$";
+        return email.matches(MAIL_PATTERN);
+    }
+
+
+
+    public boolean isValidPassword(final String password) {
+        Pattern pattern; Matcher matcher;
+        final String PASSWORD_PATTERN =
+                "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$";
+        pattern = Pattern.compile(PASSWORD_PATTERN);
+        matcher = pattern.matcher(password);
+        return matcher.matches();
+    }
+
+    public boolean isValidPhoneNumber(final String phonenumber){
+
+        final String numeros =
+                "(6|7)[ -]*([0-9][ -]*){9}$";
+        return phonenumber.matches(numeros);
+
+    }
+
 
 
 }
