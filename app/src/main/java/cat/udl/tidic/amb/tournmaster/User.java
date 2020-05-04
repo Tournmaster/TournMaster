@@ -34,10 +34,11 @@ public class User {
     private String Matchname;
     @SerializedName("club")
     private String Club;
+    @SerializedName("license")
+    private String license;
+
+
     // @JordiMateoUdl: Aqui tots els camps amb SerializedName aixi no caldrà treballar amb JSON...
-
-
-
     public User( String username, String email, String name, String surname, String genere,String password,String prefSmash, String posicion,String rol,String matchname,String club) {
         this.username = username;
         this.email = email;
@@ -50,6 +51,10 @@ public class User {
         this.Rol = rol;
         this.Matchname = matchname;
         this.Club = club;
+    }
+
+    public User(){
+
     }
 
     public String getMatchname() {
@@ -74,6 +79,12 @@ public class User {
 
     public void setRol(String rol) {
         Rol = rol;
+        if(rol.equals("Organizador")){
+            PrefSmash = "O";
+        }
+        if(genere.equals("Jugador")){
+            PrefSmash = "P";
+        }
     }
 
     public String getPrefSmash() {
@@ -82,6 +93,24 @@ public class User {
 
     public void setPrefSmash(String prefSmash) {
         PrefSmash = prefSmash;
+        if(prefSmash.equals("Saque")){
+            PrefSmash = "S";
+        }
+        if(prefSmash.equals("Right")){
+            PrefSmash = "R";
+        }
+        if(prefSmash.equals("Globo")){
+            PrefSmash = "G";
+        }
+        if(prefSmash.equals("Cortada")){
+            PrefSmash = "C";
+        }
+        if(prefSmash.equals("Smash")){
+            PrefSmash = "M";
+        }
+        if(prefSmash.equals("Volea")){
+            PrefSmash = "V";
+        }
     }
 
     public String getPosicion() {
@@ -90,6 +119,12 @@ public class User {
 
     public void setPosicion(String posicion) {
         Posicion = posicion;
+        if(posicion.equals("Derecha")){
+            Posicion = "R";
+        }
+        if(posicion.equals("Izquierda")){
+            Posicion = "L";
+        }
     }
 
     public String getUsername() {
@@ -130,6 +165,12 @@ public class User {
 
     public void setGenere(String genere) {
         this.genere = genere;
+        if(genere.equals("Hombre")){
+            PrefSmash = "H";
+        }
+        if(genere.equals("Mujer")){
+            PrefSmash = "F";
+        }
     }
 
     public String getPassword() {
@@ -193,4 +234,71 @@ public class User {
                 && this.name.equals(e.getName());
 
     }
+
+    public String getPrefSmashText() {
+
+        if(this.PrefSmash.equals("S")){
+            return"Saque";
+        }
+        if(this.PrefSmash.equals("R")){
+            return"Right";
+        }
+        if(this.PrefSmash.equals("G")){
+            return"Globo";
+        }
+        if(this.PrefSmash.equals("C")){
+            return"Cortada";
+        }
+        if(this.PrefSmash.equals("M")){
+            return"Smash";
+        }
+        if(this.PrefSmash.equals("V")){
+            return"Volea";
+        }else{
+            return "Error";
+        }
+    }
+
+
+    public String getGenereText() {
+
+        if(this.genere.equals("M")){
+            return"Hombre";
+        }else{
+            return "Mujer";
+        }
+    }
+
+    public String hasLicense(){
+        if (this.license == null){
+            return "No tiene licencia";
+        }
+        else {
+            if (this.license.equals("Y")) {
+                return "Tiene licencia";
+            } else {
+                return "No tiene licencia";
+            }
+        }
+    }
+
+    public String getPositionText() {
+
+        if(this.Posicion.equals("R")){
+            return "Derecha";
+        }else{
+            return "Izquierda";
+        }
+    }
+
+    public String getRolText() {
+
+        if(this.Rol.equals("O")){
+            return "Organizador";
+        }else{
+            return "Jugador";
+        }
+    }
+
+
 }
