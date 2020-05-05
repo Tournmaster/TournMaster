@@ -20,7 +20,7 @@ import retrofit2.http.Query;
 
 public interface UserService {
 
-    //metodes per fer les instancies a la base de dades tan como get i post!:
+        //metodes per fer les instancies a la base de dades tan como get i post!:
 
         // Accounts
         /*
@@ -28,7 +28,7 @@ public interface UserService {
          */
         //PETICIONES GETS
         @GET("/account/profile")
-        Call<JsonObject> getUserProfile(@Header("Authorization") String auth_token);
+        Call<User> getUserProfile(@Header("Authorization") String auth_token);
 
         // Users
         @GET("/users")
@@ -55,5 +55,5 @@ public interface UserService {
 
         //Peticiones PUT
         @PUT("/account/update_profile")
-        Call<Void> updateAccount(@Header("Authorization") String auth_token, @Body JsonObject userJson);
+        Call<Void> updateAccount(@Header("Authorization") String auth_token, @Body User u);
 }

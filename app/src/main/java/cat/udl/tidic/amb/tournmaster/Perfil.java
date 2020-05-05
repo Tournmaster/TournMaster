@@ -43,7 +43,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Perfil extends AppCompatActivity {
+public class Perfil extends AppActivityMenu {
+
+    // Visual components (UI)
     private TextView user;
     private EditText mail;
     private EditText rol;
@@ -66,55 +68,26 @@ public class Perfil extends AppCompatActivity {
     private RadioButton left;
     private String valuePos;
 
-
-
+    // Tag for debug
     private String TAG = "Perfil";
-
-    private UserService userService;
-    private SharedPreferences mPreferences;
-    private String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        bottomNavigationView.setSelectedItemId(R.id.Perfil);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch(menuItem.getItemId()){
-                    case R.id.Inicio:
-                        startActivity(new Intent(getApplicationContext(),
-                                Inicio.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.Partidos:
-                        startActivity(new Intent(getApplicationContext(),
-                                Partidos.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.Buscar:
-                        startActivity(new Intent(getApplicationContext(),
-                                Search.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.Perfil:
-                        startActivity(new Intent(getApplicationContext(),
-                                Perfil.class));
-                        overridePendingTransition(0,0);
-
-
-
-                        return true;
-
-                }
-                return false;
-            }
-        });
-
+        this.initView(R.layout.activity_profile);
         readPermission();
+        getUserProfile();
+    }
 
+    @Override
+    protected void initView(int layout){
+        // @JordiMateoUdl: En aquest punt inicialitzem els components del pare:
+        // - Menu
+        // - UserService
+        // - SharedPreferences
+        super.initView(layout);
+
+        // @JordiMateoUdl: Ara els propis de la vista
         img_photo = findViewById(R.id.img_perfil);
         user = findViewById(R.id.text_users);
         mail = findViewById(R.id.text_mail);
@@ -150,7 +123,7 @@ public class Perfil extends AppCompatActivity {
                 rigth.setChecked(true);
                 valuePos = "R";
 
-                Log.d("POSIC",valuePos);
+                Log.d(TAG, "El valor del elemento valuePos después del click (left)  és::" + valuePos);
             }
         });
         left.setOnClickListener(new View.OnClickListener() {
@@ -159,246 +132,140 @@ public class Perfil extends AppCompatActivity {
                 left.setChecked(true);
                 rigth.setChecked(false);
                 valuePos = "L";
-            Log.d("POSIC",valuePos);
+                Log.d(TAG, "El valor del elemento valuePos después del click (left)  és:" + valuePos);
             }
         });
 
-
-
-
-
-        userService = RetrofitClientInstance.
-                getRetrofitInstance().create(UserService.class);
-
-        this.mPreferences = PreferencesProvider.providePreferences();
-        token = this.mPreferences.getString("token", "");
-
-
-        Call<JsonObject> call_get = userService.getUserProfile(token);
-        call_get.enqueue(new Callback<JsonObject>() {
+        actualizar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                Log.d("ERROR",response.code()+"");
-                if(response.code()==200){
-                    //response.body();
-                    JsonObject userJson = response.body();
-                    String nom_user = userJson.get("username").toString();
-                    user.setText(atributs(nom_user));
-                    String user_surname = userJson.get("surname").toString();
-                    surname.setText(atributs(user_surname));
-                    String user_name = userJson.get("name").toString();
-                    name.setText(atributs(user_name));
-                    String user_prefplayer = userJson.get("matchname").toString();
-                    matchaname.setText(atributs(user_prefplayer));
-                    String user_smash = userJson.get("prefsmash").toString();
-                    user_smash = user_smash.substring(1,user_smash.length()-1);
-                    if(user_smash.equals("S")){
-                        prefsmash.setText("Saque");
-                    }
-                    if(user_smash.equals("R")){
-                        prefsmash.setText("Right");
-                    }
-                    if(user_smash.equals("L")){
-                        prefsmash.setText("Reves");
-                    }
-                    if(user_smash.equals("G")){
-                        prefsmash.setText("Globo");
-                    }
-                    if(user_smash.equals("C")){
-                        prefsmash.setText("Cortada");
-                    }
-                    if(user_smash.equals("M")){
-                        prefsmash.setText("Smash");
-                    }
-                    if(user_smash.equals("V")){
-                        prefsmash.setText("Volea");
-                    }
-                    String user_club = userJson.get("club").toString();
-                    club.setText(atributs(user_club));
-                    String user_phone= (userJson.get("phone").toString());
-                    phone.setText(atributs(user_phone));
-                    isValidPhoneNumber(phone.getText().toString());
-                    String user_mail = userJson.get("email").toString();
-                    mail.setText(atributs(user_mail));
-                    String user_sex= userJson.get("genere").toString();
-                    isValidEmailAddress(mail.getText().toString());
-                    user_sex = user_sex.substring(1,user_sex.length()-1);
-
-                    Log.d("TAG",user_sex);
-
-                    if(user_sex.equals("M")){
-                        Log.d("TAG","ENTRA");
-                        sex.setText("Hombre");
-                    }
-                    else{
-                        sex.setText("Mujer");
-                    }
-                    String user_license= userJson.get("license").toString();
-                    user_license = user_license.substring(1,user_license.length()-1);
-                    Log.d("TAG",user_license);
-
-                    if(user_license.equals("Y")){
-                        Log.d("TAG","ENTRA");
-                        license.setText("Tienes licencia");
-                    }
-                    else{
-                        license.setText("No tienes liencia");
-                    }
-                    String user_position= userJson.get("position").toString();
-                    user_position = user_position.substring(1,user_position.length()-1);
-                    Log.d("TAG",user_position);
-
-                    if(user_position.equals("R")){
-                        Log.d("TAG","ENTRA");
-                        position.setText("Derecha");
-                        rigth.setSelected(true);
-                    }
-                    else{
-                        position.setText("Izquierda");
-                        left.setSelected(true);
-                    }
-                    Log.d("TAG",user_sex);
-                    String user_rol = userJson.get("rol").toString();
-                    Log.d("rol",user_rol);
-                    user_rol=user_rol.substring(1,user_rol.length()-1);
-                    if(user_rol.equals("O")){
-
-                        rol.setText("Organizador");
-                    }
-
-                    else{
-                        rol.setText("Jugador");
-                    }
-
-
-                    actualizar.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            JsonObject user_json = new JsonObject();
-                            try {
-
-                                    // @JordiMateoUdL: Heu de vigilar la property té que tenir el mateix nom que a models del python, sinó error :)
-                                    // Si s'envieen sempre tots els camps -> afegiu tots els camps a User i despres enlloc d'enviar un JSON envieu el Usuari
-                                    // Molt més net i us evitareu errors tontos...
-
-                                    user_json.addProperty("username", name.getText().toString());
-                                    user_json.addProperty("surname", surname.getText().toString());
-                                    user_json.addProperty("email", mail.getText().toString());
-                                    user_json.addProperty("phone", phone.getText().toString());
-                                    user_json.addProperty("matchname", matchaname.getText().toString());
-                                    user_json.addProperty("prefsmash", prefsmash.getText().toString());
-                                    user_json.addProperty("club", club.getText().toString());
-
-
-                                    user_json.addProperty("position", valuePos);
-
-
-                                    System.out.println("Debe selecionar una posicion");
-
-                                Call<Void>call = userService.updateAccount(token, user_json);
-                                call.enqueue(new Callback<Void>() {
-                                    @Override
-                                    public void onResponse(Call<Void> call, Response<Void> response) {
-                                        if (response.code() == 200) {
-                                            System.out.println("entras?");
-                                            Toast.makeText(Perfil.this, "Properties Changed", Toast.LENGTH_SHORT).show();
-                                            Intent intent = new Intent(Perfil.this, Perfil.class);
-                                            startActivity(intent);
-                                        }
-                                        else {
-                                            try {
-                                                Toast.makeText(Perfil.this, Objects.requireNonNull(response.errorBody()).string(), Toast.LENGTH_SHORT).show();
-                                            } catch (IOException e) {
-                                                e.printStackTrace();
-                                            }
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onFailure(Call<Void> call, Throwable t) {
-
-                                    }
-                                });
-
-
-                            }catch (Exception e){
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-
-
-
-                }
-                else{
-                    //missatge de error;
-                }
-
-
-            }
-
-            @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
-                Log.d("TAG",t.getMessage().toString());
+            public void onClick(View v) {
+                User u = getUserChanges();
+                updateUserProfile(u);
             }
         });
-
     }
-    public String atributs(String n){
 
-        n = n.substring(1,n.length()-1);
+    public void getUserProfile() {
+        // @JordiMateoUdl -> Podem posar el enque per obtenir usuari
+        System.out.print(this.userService);
+        Call<User> call_get = this.userService.getUserProfile(this.token);
+        call_get.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
 
-        return n;
+                if (response.code() == 200) {
+                    Log.d(TAG, "getUserProfile -> API ha devuelto el codigo: " + response.code() + "");
+                    User u = response.body();
+                    Log.d(TAG, "Position: " + u.getPosicion() +" = "+u.getPositionText());
+                    bindUserToUI(u);
+                } else {
+                    Log.d(TAG, "getUserProfile -> API ha devuelto el codigo: " + response.code() + "");
+                }
+            }
 
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Log.d(TAG, "getUserProfile -> Problemas con la comunicación con API: " + t.getMessage() + "");
+
+            }
+        });
     }
+
+    public void updateUserProfile(User u){
+        Call<Void>call = this.userService.updateAccount(this.token, u);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.code() == 200) {
+                    Log.d(TAG, "updateUserProfile -> API ha devuelto el codigo: " + response.code() + "");
+                    Toast.makeText(Perfil.this, "Properties Changed", Toast.LENGTH_SHORT).show();
+                    getUserProfile();
+                    cancelarCambios(getCurrentFocus());
+                }
+                else {
+                    Log.d(TAG, "updateUserProfile -> API ha devuelto el codigo: " + response.code() + "");
+                    try {
+                        Toast.makeText(Perfil.this, Objects.requireNonNull(response.errorBody()).string(), Toast.LENGTH_SHORT).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.d(TAG, "updateUserProfile error en la comunicación con l'API: " + t.getMessage() + "");
+            }
+        });
+    }
+
+    public void bindUserToUI(User u) {
+
+        if (u != null) {
+            user.setText(u.getUsername());
+            surname.setText(u.getSurname());
+            mail.setText(u.getEmail());
+            name.setText(u.getName());
+            matchaname.setText(u.getMatchname());
+            prefsmash.setText(u.getPrefSmashText());
+            club.setText(u.getClub());
+            phone.setText(u.getPhone());
+            sex.setText(u.getGenereText());
+            license.setText(u.hasLicense());
+            position.setText(u.getPositionText());
+            if (u.getPosicion().equals("R")){
+                left.setChecked(true);
+                rigth.setChecked(false);
+                valuePos = "R";
+            }else{
+                rigth.setChecked(true);
+                left.setChecked(false);
+                valuePos = "L";
+            }
+            rol.setText(u.getRolText());
+        }
+    }
+
+    // Con esta función creamos un usuario con les valores entrados en el formulario
+    public User getUserChanges() {
+        User u = new User();
+        u.setUsername(name.getText().toString());
+        u.setSurname(surname.getText().toString());
+        u.setEmail(mail.getText().toString());
+        u.setClub(phone.getText().toString());
+        u.setMatchname(matchaname.getText().toString());
+        u.setPrefSmash(prefsmash.getText().toString());
+        u.setClub(club.getText().toString());
+        u.setPosicion(valuePos);
+        return u;
+    }
+
+
+
 
     public void cerrarSession(View view){
-
-        this.mPreferences = PreferencesProvider.providePreferences();
-        token = this.mPreferences.getString("token", "");
-
-
-        userService = RetrofitClientInstance.
-                getRetrofitInstance().create(UserService.class);
-
         Call<ResponseBody> call_delete= userService.deleteToken(token);
         call_delete.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
-
-                    Log.d("FUNC","entras?");
-
-                        mPreferences.edit().putString("token", "").apply();
-                        Intent intent = new Intent(Perfil.this, Login.class);
-                        startActivity(intent);
+                if (response.code() == 200){
+                    Log.d(TAG, "deleteToken -> API ha devuelto el codigo: " + response.code() + "");
+                    mPreferences.edit().putString("token", "").apply();
+                    Intent intent = new Intent(Perfil.this, Login.class);
+                    startActivity(intent);
+                }else{
+                    Log.d(TAG, "deleteToken -> API ha devuelto el codigo: " + response.code() + "");
                 }
 
-
-
+            }
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+                Log.d(TAG, "deleteToken -> API ha devuelto el codigo: " + t.getMessage() + "");
             }
         });
     }
-    public boolean validar(String n){
 
-        System.out.println(n);
-
-        if(n.isEmpty() || n.equals(" ")){
-
-            return false;
-        }
-        else{
-            return true;
-        }
-    }
-    public void Inico (View view){
-
-        Intent intent = new Intent(Perfil.this,MainActivity.class);
-        startActivity(intent);
-    }
 
     public void editar(View view){
         mail.setEnabled(true);
@@ -420,12 +287,9 @@ public class Perfil extends AppCompatActivity {
         rigth.setVisibility(View.VISIBLE);
         left.setVisibility(View.VISIBLE);
 
-
-
-
     }
-    public void cancelarCambios(View view){
 
+    public void cancelarCambios(View view){
         mail.setEnabled(false);
         sex.setEnabled(false);
         rol.setEnabled(false);
@@ -444,26 +308,19 @@ public class Perfil extends AppCompatActivity {
         actualizar.setVisibility(View.INVISIBLE);
         rigth.setVisibility(View.INVISIBLE);
         left.setVisibility(View.INVISIBLE);
-
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.perfil_button,menu);
-        return true;
-    }
+
     public void openDialog() {
         DialogImage dialogImage = new DialogImage().newInstance(this);
-        dialogImage.show(getSupportFragmentManager(),"example_dialog");
+        dialogImage.show(getSupportFragmentManager(),"Profile Photo Dialog");
     }
-
 
 
     private boolean readPermission() {
         if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
 
-            // Should we show an explanation?
             if (shouldShowRequestPermissionRationale(
                     Manifest.permission.READ_EXTERNAL_STORAGE)) {
                 Toast.makeText(getApplicationContext(),"I need access to images", Toast.LENGTH_LONG);
@@ -486,23 +343,17 @@ public class Perfil extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("DIALOG", "" + resultCode);
+        Log.d(TAG, "Dialog result: " + resultCode);
+
         if (resultCode == RESULT_OK) {
-            String token;
-            this.mPreferences = PreferencesProvider.providePreferences();
-            token = this.mPreferences.getString("token", "");
-
-
-            userService = RetrofitClientInstance.
-                    getRetrofitInstance().create(UserService.class);
-
             Uri path = data.getData();
             img_photo.setImageURI(path);
+
             File file1 = new File(getRealPathFromURI(path, this));
             RequestBody requestFile2 = RequestBody.create(MediaType.parse(getContentResolver().getType(data.getData())), file1);
             MultipartBody.Part body2 = MultipartBody.Part.createFormData("image_file", file1.getName(), requestFile2);
 
-            Call<ResponseBody> call_update = userService.uploadImage(token, body2);
+            Call<ResponseBody> call_update = this.userService.uploadImage(this.token, body2);
             call_update.enqueue(new Callback<ResponseBody>() {
 
                 @Override
@@ -535,14 +386,16 @@ public class Perfil extends AppCompatActivity {
         }
         return uri.getPath();
     }
+
+
+    // @JordiMateoUdl -> Moure a un classe utils se comparteix abm el registre :)
     public boolean isValidEmailAddress(String email){
         final String MAIL_PATTERN =
                 "^[\\w-_.+]*[\\w-_.]@([\\w]+\\.)+[\\w]+[\\w]$";
         return email.matches(MAIL_PATTERN);
     }
 
-
-
+    // @JordiMateoUdl -> Moure a un classe utils se comparteix abm el registre :)
     public boolean isValidPassword(final String password) {
         Pattern pattern; Matcher matcher;
         final String PASSWORD_PATTERN =
@@ -552,6 +405,7 @@ public class Perfil extends AppCompatActivity {
         return matcher.matches();
     }
 
+    // @JordiMateoUdl -> Moure a un classe utils se comparteix abm el registre :)
     public boolean isValidPhoneNumber(final String phonenumber){
 
         final String numeros =
@@ -559,6 +413,9 @@ public class Perfil extends AppCompatActivity {
         return phonenumber.matches(numeros);
 
     }
+
+
+
 
 
 

@@ -21,6 +21,7 @@
         <activity android:name=".Partidos" />
         <activity android:name=".Inicio" />
         <activity android:name=".Perfil" />
+        <activity android:name=".AppActivityMenu" />
         <activity android:name=".Login" />
         <activity android:name=".Register" />
         <activity android:name=".MainActivity">

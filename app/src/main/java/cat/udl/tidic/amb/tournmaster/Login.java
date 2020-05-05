@@ -132,22 +132,22 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        if (!token.equals("")){
-
-            intent = new Intent(Login.this,Inicio.class);
-            startActivity(intent);
-
-            tokenLabel.setVisibility(View.INVISIBLE);
-            tokenTV.setText(token);
-            usernameET.setVisibility(View.INVISIBLE);
-            passwordET.setVisibility(View.INVISIBLE);
-            createToken.setVisibility(View.INVISIBLE);
-            tokenTV.setVisibility(View.INVISIBLE);
-            miss_init.setText(getResources().getString(R.string.Tittle));
-            miss_init.setVisibility(View.VISIBLE);
-
-            // users.setText(usernameET.getText().toString());
-        }
+//        if (!token.equals("")){
+//
+//            intent = new Intent(Login.this,Inicio.class);
+//            startActivity(intent);
+//
+//            tokenLabel.setVisibility(View.INVISIBLE);
+//            tokenTV.setText(token);
+//            usernameET.setVisibility(View.INVISIBLE);
+//            passwordET.setVisibility(View.INVISIBLE);
+//            createToken.setVisibility(View.INVISIBLE);
+//            tokenTV.setVisibility(View.INVISIBLE);
+//            miss_init.setText(getResources().getString(R.string.Tittle));
+//            miss_init.setVisibility(View.VISIBLE);
+//
+//            // users.setText(usernameET.getText().toString());
+//        }
 
         createToken.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
