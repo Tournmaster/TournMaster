@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import cat.udl.tidic.amb.tournmaster.preferences.PreferencesProvider;
+import cat.udl.tidic.amb.tournmaster.retrofit.RetrofitClientInstance;
 import cat.udl.tidic.amb.tournmaster.services.UserService;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -108,7 +109,7 @@ public class ProfilePublic extends AppCompatActivity {
 
          username = nom.getText().toString();
          Log.d(TAG,""+username);
-         Call<User> call_get = userService.getPerfilPublico(token,username.trim());
+         Call<User> call_get = userService.getPerfilPublico(username.trim());
          call_get.enqueue(new Callback<User>() {
              @Override
              public void onResponse(Call<User> call, Response<User> response) {

@@ -19,6 +19,7 @@ import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.util.Objects;
 
+import cat.udl.tidic.amb.tournmaster.retrofit.RetrofitClientInstance;
 import cat.udl.tidic.amb.tournmaster.services.UserService;
 import cat.udl.tidic.amb.tournmaster.utils.Utils;
 import retrofit2.Call;

@@ -11,6 +11,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -20,40 +21,30 @@ import retrofit2.http.Query;
 
 public interface UserService {
 
-        //metodes per fer les instancies a la base de dades tan como get i post!:
 
-        // Accounts
-        /*
-         * @JordiMateoUdl: Heu de diferenciar el registre de la operació d'actualitzar el perfil!!!
-         */
-        //PETICIONES GETS
         @GET("/account/profile")
-        Call<User> getUserProfile(@Header("Authorization") String auth_token);
+        Call<User> getUserProfile();
 
-        // Users
         @GET("/users")
-        Call<List<User>> getUsers(@Header("Authorization") String auth_token,@Query("genere") String genere,@Query("position") String position,@Query("prefsmash") String prefsmash);
+        Call<List<User>> getUsers(@Query("genere") String genere,@Query("position") String position,@Query("prefsmash") String prefsmash);
 
         @GET("/users/show/{username}")
-        Call<User> getPerfilPublico(@Header("Authorization") String auth_token, @Path("username") String username);
-//----------------------------------------------------------------------------------------------------------
+        Call<User> getPerfilPublico(@Path("username") String username);
 
-        //PETICIONES POST
         @POST("/users/register")
+        @Headers("No-Authentication: true") //Con esta línia el interceptor no pondra el token :)
         Call<Void> createUser(@Body JsonObject userJson);
 
-
         @POST("/account/create_token")
-        Call<ResponseBody>createToken(@Header("Authorization") String auth_token);
+        Call<ResponseBody>createToken();
+
         @Multipart
         @POST("/account/profile/update_profile_image")
-        Call<ResponseBody>uploadImage(@Header("Authorization") String auth_token, @Part  MultipartBody.Part image);
+        Call<ResponseBody>uploadImage(@Part  MultipartBody.Part image);
 
         @POST("account/delete_token")
-        Call<ResponseBody>deleteToken(@Header("Authorization") String auth_token);
-        //----------------------------------------------------------------------------------------------------------
+        Call<ResponseBody>deleteToken(@Body String token);
 
-        //Peticiones PUT
         @PUT("/account/update_profile")
-        Call<Void> updateAccount(@Header("Authorization") String auth_token, @Body User u);
+        Call<Void> updateAccount(@Body User u);
 }
