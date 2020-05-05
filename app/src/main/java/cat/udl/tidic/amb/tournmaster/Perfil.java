@@ -148,7 +148,7 @@ public class Perfil extends AppActivityMenu {
     public void getUserProfile() {
         // @JordiMateoUdl -> Podem posar el enque per obtenir usuari
         System.out.print(this.userService);
-        Call<User> call_get = this.userService.getUserProfile(this.token);
+        Call<User> call_get = this.userService.getUserProfile();
         call_get.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
@@ -172,7 +172,7 @@ public class Perfil extends AppActivityMenu {
     }
 
     public void updateUserProfile(User u){
-        Call<Void>call = this.userService.updateAccount(this.token, u);
+        Call<Void>call = this.userService.updateAccount(u);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -353,7 +353,7 @@ public class Perfil extends AppActivityMenu {
             RequestBody requestFile2 = RequestBody.create(MediaType.parse(getContentResolver().getType(data.getData())), file1);
             MultipartBody.Part body2 = MultipartBody.Part.createFormData("image_file", file1.getName(), requestFile2);
 
-            Call<ResponseBody> call_update = this.userService.uploadImage(this.token, body2);
+            Call<ResponseBody> call_update = this.userService.uploadImage(body2);
             call_update.enqueue(new Callback<ResponseBody>() {
 
                 @Override

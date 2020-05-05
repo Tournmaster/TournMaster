@@ -11,12 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import cat.udl.tidic.amb.tournmaster.Inicio;
-import cat.udl.tidic.amb.tournmaster.Partidos;
-import cat.udl.tidic.amb.tournmaster.Perfil;
-import cat.udl.tidic.amb.tournmaster.R;
-import cat.udl.tidic.amb.tournmaster.RetrofitClientInstance;
-import cat.udl.tidic.amb.tournmaster.Search;
+import cat.udl.tidic.amb.tournmaster.retrofit.RetrofitClientInstance;
 import cat.udl.tidic.amb.tournmaster.preferences.PreferencesProvider;
 import cat.udl.tidic.amb.tournmaster.services.UserService;
 

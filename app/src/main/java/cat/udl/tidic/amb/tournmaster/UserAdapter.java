@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 class UserAdapter extends ListAdapter<User, UserAdapter.UserHolder> {
 
     private final static String TAG = "UserAdapter";
@@ -70,6 +72,10 @@ class UserAdapter extends ListAdapter<User, UserAdapter.UserHolder> {
         if(current_player.getPrefSmash().equals("V")){
             holder.golpe.setText("Volea");
         }
+
+        Log.d(TAG, "Photo URl:" + current_player.getPhoto());
+
+        Picasso.get().load(current_player.getPhoto()).into(holder.photo);
     }
 
     public User getUserAt(int position){
@@ -86,10 +92,12 @@ class UserAdapter extends ListAdapter<User, UserAdapter.UserHolder> {
         private ImageView left;
         private ImageView rigth;
         private TextView golpe;
+        private ImageView photo;
 
         public UserHolder(View itemView) {
             super(itemView);
             usernameTextView = itemView.findViewById(R.id.playerName);
+            photo = itemView.findViewById(R.id.photo);
             female = itemView.findViewById(R.id.img_girl);
             male = itemView.findViewById(R.id.img_boy);
             left = itemView.findViewById(R.id.img_psIz);
