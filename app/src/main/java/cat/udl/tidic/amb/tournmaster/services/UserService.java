@@ -31,6 +31,9 @@ public interface UserService {
         @GET("/users/show/{username}")
         Call<User> getPerfilPublico(@Path("username") String username);
 
+        @GET("/tournaments/show/{id}")
+        Call<User> getTournament(@Path("id") String id);
+
         @POST("/users/register")
         @Headers("No-Authentication: true") //Con esta línia el interceptor no pondra el token :)
         Call<Void> createUser(@Body JsonObject userJson);

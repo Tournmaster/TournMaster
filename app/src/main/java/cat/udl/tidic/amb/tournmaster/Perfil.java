@@ -3,15 +3,12 @@ package cat.udl.tidic.amb.tournmaster;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,12 +17,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.gson.JsonObject;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,8 +25,6 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import cat.udl.tidic.amb.tournmaster.preferences.PreferencesProvider;
-import cat.udl.tidic.amb.tournmaster.services.UserService;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -89,10 +79,10 @@ public class Perfil extends AppActivityMenu {
 
         // @JordiMateoUdl: Ara els propis de la vista
         img_photo = findViewById(R.id.img_perfil);
-        user = findViewById(R.id.text_users);
+        user = findViewById(R.id.text_torneo_title);
         mail = findViewById(R.id.text_mail);
         rol = findViewById(R.id.text_rol);
-        sex = findViewById(R.id.text_sexo);
+        sex = findViewById(R.id.text_end_date);
         name = findViewById(R.id.ed_name);
         surname = findViewById(R.id.ed_surname);
         birthday = findViewById(R.id.text_birthday);
