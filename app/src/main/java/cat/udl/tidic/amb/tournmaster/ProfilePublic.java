@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.squareup.picasso.Picasso;
 
 import cat.udl.tidic.amb.tournmaster.preferences.PreferencesProvider;
 import cat.udl.tidic.amb.tournmaster.retrofit.RetrofitClientInstance;
@@ -39,6 +40,7 @@ public class ProfilePublic extends AppCompatActivity {
     private ImageView girl;
     private ImageView boy;
     private TextView rol;
+    private ImageView img;
 
 
     @Override
@@ -102,6 +104,7 @@ public class ProfilePublic extends AppCompatActivity {
         golpeprf = findViewById(R.id.edit_prefsmash);
         club = findViewById(R.id.edit_club);
         rol = findViewById(R.id.text_rol);
+        img = findViewById(R.id.image_pb);
 
 
 
@@ -131,6 +134,8 @@ public class ProfilePublic extends AppCompatActivity {
                      else{
                          position.setText("Derecha");
                      }
+                     Log.d(TAG, "Photo URl:" + user.getPhoto());
+                     Picasso.get().load(user.getPhoto()).into(img);
                      name.setText(user.getName());
                      mail.setText(user.getEmail());
                      matchname.setText(user.getMatchname());

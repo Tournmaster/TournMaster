@@ -10,7 +10,6 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -30,6 +29,7 @@ public interface UserService {
 
         @GET("/users/show/{username}")
         Call<User> getPerfilPublico(@Path("username") String username);
+
 
         @POST("/users/register")
         @Headers("No-Authentication: true") //Con esta línia el interceptor no pondra el token :)
