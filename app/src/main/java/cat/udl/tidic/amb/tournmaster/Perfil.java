@@ -19,6 +19,9 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.squareup.picasso.Picasso;
+
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
@@ -192,6 +195,7 @@ public class Perfil extends AppActivityMenu {
     public void bindUserToUI(User u) {
 
         if (u != null) {
+            Picasso.get().load(u.getPhoto()).into(img_photo);
             user.setText(u.getUsername());
             surname.setText(u.getSurname());
             mail.setText(u.getEmail());
@@ -325,6 +329,7 @@ public class Perfil extends AppActivityMenu {
     }
 
     public void cargarImagen() {
+
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/");
         startActivityForResult(intent, 10);
