@@ -145,7 +145,6 @@ public class Tournament {
 
         // Compare the data members and return accordingly
         return this.id == e.getId()
-                && this.name.equals(e.getName())
                 && this.name.equals(e.getName());
 
     }

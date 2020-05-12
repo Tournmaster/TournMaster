@@ -6,10 +6,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +23,8 @@ import cat.udl.tidic.amb.tournmaster.services.TournamentService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static cat.udl.tidic.amb.tournmaster.Search.EDIT_EVENT;
 
 
 public class SearchTournament extends AppCompatActivity {
@@ -34,18 +39,50 @@ public class SearchTournament extends AppCompatActivity {
         setContentView(R.layout.activity_search_tournament);
         intent = getIntent();
 
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setSelectedItemId(R.id.Buscar);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch(menuItem.getItemId()){
+                    case R.id.Inicio:
+                        startActivity(new Intent(getApplicationContext(),
+                                Inicio.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.Partidos:
+                        startActivity(new Intent(getApplicationContext(),
+                                Partidos.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.Buscar:
+                        startActivity(new Intent(getApplicationContext(),
+                                Search.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.Perfil:
+                        startActivity(new Intent(getApplicationContext(),
+                                Perfil.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                }
+                return false;
+            }
+        });
+
         tournamentsListView = findViewById(R.id.tournamentList);
         tournamentsListView.setLayoutManager(new LinearLayoutManager(this));
         tournamentAdapter = new TournamentAdapter(new TournamentDiffCallBack());
-//            TournamentAdapter.setOnItemClickListener(new TournamentAdapter().OnItemClickListener() {
-//            @Override
-//            public void onItemClick(Tournament tour) {
-//                Log.d(TAG, tour.getUsername());
-//                Intent intent = new Intent(Search.this, Torneo.class);
-//                intent.putExtra(ProfilePublic.EXTRA_USERNAME, tour.getUsername());
-//                startActivityForResult(intent, EDIT_EVENT);
-//            }
-//        });
+        tournamentsListView.setAdapter(tournamentAdapter);
+        tournamentAdapter.setOnItemClickListener(new TournamentAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Tournament tournmanet) {
+                Intent intent = new Intent(SearchTournament.this, Torneo.class);
+                intent.putExtra(Torneo.EXTRA_TOURNAMENT, tournmanet.getId());
+                startActivityForResult(intent, EDIT_EVENT);
+            }
+        });
 
         SearchList();
 
@@ -66,6 +103,7 @@ public class SearchTournament extends AppCompatActivity {
                     Log.d(TAG,"200");
                     // Obtenim les dades de la consulta
                     tournaments_data = (ArrayList<Tournament>) response.body();
+                    Log.d(TAG,tournaments_data+"");
                     tournamentAdapter.submitList(tournaments_data);
                 } else{
                     // notificar problemes amb la consulta

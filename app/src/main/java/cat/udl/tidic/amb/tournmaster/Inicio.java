@@ -15,13 +15,13 @@ public class Inicio extends AppActivityMenu {
         this.initView(R.layout.activity_inicio);
         but_unir = findViewById(R.id.button2);
         but_crear = findViewById(R.id.button);
-        but_unir.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                intent = new Intent(Inicio.this, Torneo.class);
-                startActivity(intent);
-            }
-        });
+//        but_unir.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                intent = new Intent(Inicio.this, Torneo.class);
+//                startActivity(intent);
+//            }
+//        });
     }
     public void SearchTour(View view){
         Intent intent = new Intent(Inicio.this,SearchTournament.class);
