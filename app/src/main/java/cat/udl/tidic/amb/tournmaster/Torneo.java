@@ -110,35 +110,25 @@ public class Torneo extends AppActivityMenu {
         });
         txt_inscription.setText("30 de febrero");
 
-        category.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item));
-        category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id)
-            {
-                Toast.makeText(adapterView.getContext(), (String) adapterView.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent)
-            {
-                // vacio
-
-            }
-        });
         txt_name_tournament.setText(intent.getStringExtra(EXTRA_TOURNAMENT));
         String tourname = txt_name_tournament.getText().toString();
         Log.d(TAG,""+tourname);
-        Call<Tournament> call_get = tournamentService.getTournament(tourname.trim());
+
+        Call<Tournament> call_get = tournamentService.getTournament("1");
         call_get.enqueue(new Callback<Tournament>() {
             @Override
             public void onResponse(Call<Tournament> call, Response<Tournament> response) {
                 Log.d(TAG,""+response.code());
                 if(response.code()==200) {
                     Tournament tournament = response.body();
+                    Log.d(TAG, "El torneo recibido contiene: \n" + tournament);
+
                     txt_club.setText("CANSTRIXÉ");
                     txt_start_date.setText("24M");
                     txt_end_date.setText("27M");
                     txt_price.setText("24 euros");
+                    initSpinner(tournament);
                 }
             }
             @Override
@@ -147,6 +137,14 @@ public class Torneo extends AppActivityMenu {
             }
         });
     }
+
+    public void initSpinner(Tournament t){
+        ArrayAdapter<Category> category_adapter =
+                new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
+                        t.getCategories()) ;
+        category.setAdapter(category_adapter);
+    }
+
     public void mostrarDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(Torneo.this);
         String tourname = txt_name_tournament.getText().toString();

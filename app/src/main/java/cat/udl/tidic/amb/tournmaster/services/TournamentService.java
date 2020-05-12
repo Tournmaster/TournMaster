@@ -19,6 +19,6 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface TournamentService {
-    @GET("/tournaments/show/{name}")
-    Call<Tournament> getTournament(@Path("name") String name);
+    @GET("/tournaments/show/{id}")
+    Call<Tournament> getTournament(@Path("id") String id);
 }
