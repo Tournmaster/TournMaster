@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/text_users"
+            android:id="@+id/text_torneo_title"
             android:layout_width="178dp"
             android:layout_height="59dp"
             android:layout_marginTop="24dp"
@@ -31,29 +31,32 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
+            android:id="@+id/image_pb"
+            android:layout_width="89dp"
+            android:layout_height="87dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.046"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.163"
+            app:srcCompat="@mipmap/user" />
+
+        <ImageView
             android:id="@+id/imageView"
             android:layout_width="105dp"
             android:layout_height="79dp"
             android:contentDescription="@string/tourmasterlogo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.137"
-            app:srcCompat="@mipmap/tournmaster" />
-
-        <ImageView
-            android:id="@+id/img_perfil"
-            android:layout_width="127dp"
-            android:layout_height="93dp"
-            android:background="@drawable/circle"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.166"
-            app:srcCompat="@mipmap/user" />
+            app:layout_constraintVertical_bias="0.216"
+            app:srcCompat="@mipmap/tournmaster" />
 
         <TextView
-            android:id="@+id/text_sexo"
+            android:id="@+id/text_end_date"
             android:layout_width="75dp"
             android:layout_height="26dp"
             android:layout_marginTop="112dp"
@@ -75,7 +78,7 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.684" />
+            app:layout_constraintVertical_bias="0.792" />
 
         <ImageView
             android:id="@+id/img_girls"

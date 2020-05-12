@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +13,8 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
+
+import com.squareup.picasso.Picasso;
 
 import cat.udl.tidic.amb.tournmaster.services.UserService;
 
@@ -22,6 +25,7 @@ public class DialogImage extends AppCompatDialogFragment {
     private String TAG = "DIALOGFILTER";
     private Perfil activity;
     private View rootView;
+    private User user;
 
     public static DialogImage newInstance(Perfil activity){
         DialogImage dialog = new DialogImage();
@@ -46,7 +50,12 @@ public class DialogImage extends AppCompatDialogFragment {
 
     private void init(){
         rootView = LayoutInflater.from(getContext()).inflate(R.layout.layout_dialog, null, false);
+        user = new User();
         image_photo = rootView.findViewById(R.id.img_imageview);
+
+        Log.d(TAG, "Photo URl:" + user.getPhoto());
+        Picasso.get().load(user.getPhoto()).into(image_photo);
+
 
     }
 

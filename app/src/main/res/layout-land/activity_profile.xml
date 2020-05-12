@@ -33,7 +33,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.863"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_sexo"
+                app:layout_constraintTop_toBottomOf="@+id/text_end_date"
                 app:layout_constraintVertical_bias="0.035" />
 
             <EditText
@@ -48,7 +48,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.863"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_sexo"
+                app:layout_constraintTop_toBottomOf="@+id/text_end_date"
                 app:layout_constraintVertical_bias="0.035" />
 
             <EditText
@@ -63,7 +63,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.863"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_sexo"
+                app:layout_constraintTop_toBottomOf="@+id/text_end_date"
                 app:layout_constraintVertical_bias="0.035" />
 
             <EditText
@@ -78,7 +78,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.863"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_sexo"
+                app:layout_constraintTop_toBottomOf="@+id/text_end_date"
                 app:layout_constraintVertical_bias="0.035" />
 
             <EditText
@@ -93,7 +93,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.863"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_sexo"
+                app:layout_constraintTop_toBottomOf="@+id/text_end_date"
                 app:layout_constraintVertical_bias="0.035" />
 
             <EditText
@@ -108,7 +108,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.863"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_sexo"
+                app:layout_constraintTop_toBottomOf="@+id/text_end_date"
                 app:layout_constraintVertical_bias="0.035" />
 
             <EditText
@@ -123,7 +123,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.863"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_sexo"
+                app:layout_constraintTop_toBottomOf="@+id/text_end_date"
                 app:layout_constraintVertical_bias="0.035" />
 
             <EditText
@@ -138,7 +138,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.863"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_sexo"
+                app:layout_constraintTop_toBottomOf="@+id/text_end_date"
                 app:layout_constraintVertical_bias="0.035" />
 
             <EditText
@@ -153,7 +153,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.863"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_sexo"
+                app:layout_constraintTop_toBottomOf="@+id/text_end_date"
                 app:layout_constraintVertical_bias="0.035" />
 
             <Button
@@ -194,7 +194,7 @@
         app:srcCompat="@mipmap/tournmaster" />
 
     <TextView
-        android:id="@+id/text_users"
+        android:id="@+id/text_torneo_title"
         android:layout_width="150dp"
         android:layout_height="75dp"
         android:text="@string/nombre_usuario"
@@ -231,7 +231,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.009"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_users"
+        app:layout_constraintTop_toBottomOf="@+id/text_torneo_title"
         app:layout_constraintVertical_bias="0.111" />
 
     <EditText
@@ -246,11 +246,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.931"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_sexo"
+        app:layout_constraintTop_toBottomOf="@+id/text_end_date"
         app:layout_constraintVertical_bias="0.172" />
 
     <EditText
-        android:id="@+id/text_sexo"
+        android:id="@+id/text_end_date"
         android:layout_width="90dp"
         android:layout_height="42dp"
         android:autofillHints=""
