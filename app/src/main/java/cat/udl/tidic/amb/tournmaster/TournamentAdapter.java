@@ -1,5 +1,6 @@
 package cat.udl.tidic.amb.tournmaster;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,8 +43,8 @@ class TournamentAdapter extends ListAdapter<Tournament, TournamentAdapter.Tourna
     }
 
     public Tournament getTournamentAt(int position){
-        //Log.d(TAG, "Position: "+ position);
-        //Log.d(TAG, "username: "+ getItem(position).getUsername());
+        Log.d(TAG, "Position: "+ position);
+        Log.d(TAG, "username: "+ getItem(position).getName());
         return getItem(position);
     }
 
@@ -60,9 +61,8 @@ class TournamentAdapter extends ListAdapter<Tournament, TournamentAdapter.Tourna
 
         public TournamentHolder(View itemView) {
             super(itemView);
-              nameTourn = itemView.findViewById(R.id.nameTourn);
+              nameTourn = itemView.findViewById(R.id.text_nomTour);
 //            usernameTextView = itemView.findViewById(R.id.playerName);
-              photo = itemView.findViewById(R.id.img_tourn);
 //            photo = itemView.findViewById(R.id.photo);
 //            female = itemView.findViewById(R.id.img_girl);
 //            male = itemView.findViewById(R.id.img_boy);

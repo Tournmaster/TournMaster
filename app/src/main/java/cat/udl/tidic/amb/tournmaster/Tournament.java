@@ -106,16 +106,16 @@ public Tournament(String name,String inscription,String start,String status,Stri
 
         /* Check if o is an instance of Complex or not
           "null instanceof [type]" also returns false */
-        if (!(o instanceof User)) {
+        if (!(o instanceof Tournament)) {
             return false;
         }
 
         // typecast o to Complex so that we can compare data members
-        User e = (User) o;
+        Tournament e = (Tournament) o;
 
         // Compare the data members and return accordingly
         return this.id == e.getId()
-                && this.name.equals(e.getUsername())
+                && this.name.equals(e.getName())
                 && this.name.equals(e.getName());
 
     }

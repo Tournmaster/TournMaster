@@ -2,13 +2,7 @@ package cat.udl.tidic.amb.tournmaster;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Inicio extends AppActivityMenu {
     private Intent intent;
@@ -17,7 +11,11 @@ public class Inicio extends AppActivityMenu {
         super.onCreate(savedInstanceState);
         this.initView(R.layout.activity_inicio);
     }
+    public void SearchTour(View view){
+        Intent intent = new Intent(Inicio.this,SearchTournament.class);
+        startActivity(intent);
 
+    }
 
     // Si un usuari tira endarra, no es torna a login -> es tanca l'app :)
     @Override
