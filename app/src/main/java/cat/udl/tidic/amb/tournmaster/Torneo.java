@@ -18,6 +18,9 @@ import androidx.annotation.NonNull;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cat.udl.tidic.amb.tournmaster.retrofit.RetrofitClientInstance;
 import cat.udl.tidic.amb.tournmaster.services.TournamentService;
 import cat.udl.tidic.amb.tournmaster.services.UserService;
@@ -95,7 +98,38 @@ public class Torneo extends AppActivityMenu {
         txt_start_date = findViewById(R.id.text_start_date);
         txt_end_date = findViewById(R.id.text_end_date);
         txt_name_tournament = findViewById(R.id.text_torneo_title);
+        masculino = findViewById(R.id.img_hombre);
+        femenino = findViewById(R.id.img_femenino);
+        mixto = findViewById(R.id.img_mixto);
 
+
+
+        String tourname = txt_name_tournament.getText().toString();
+        Log.d(TAG,""+tourname);
+
+        Call<Tournament> call_get = tournamentService.getTournament("1");//cambiar
+        call_get.enqueue(new Callback<Tournament>() {
+            @Override
+            public void onResponse(Call<Tournament> call, Response<Tournament> response) {
+                Log.d(TAG,""+response.code());
+                if(response.code()==200) {
+                    Tournament tournament = response.body();
+                    Log.d(TAG, "El torneo recibido contiene: \n" + tournament);
+                    txt_club.setText("tournament.getOwner()");
+                    txt_start_date.setText(tournament.getStart());
+                    txt_end_date.setText("tournament.getFinish()");
+                    txt_price.setText(tournament.getPrice_1());
+                    txt_inscription.setText(tournament.getFinish_register_date());
+                    txt_name_tournament.setText(tournament.getName());
+                    initSpinner(tournament);
+                    mostrarImagen(tournament);
+                }
+            }
+            @Override
+            public void onFailure(Call<Tournament> call, Throwable t) {
+                Log.d(TAG,t.getMessage());
+            }
+        });
         img_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,55 +142,100 @@ public class Torneo extends AppActivityMenu {
                 mostrarDialog();
             }
         });
-        txt_inscription.setText("30 de febrero");
-
-
-        txt_name_tournament.setText(intent.getStringExtra(EXTRA_TOURNAMENT));
-        String tourname = txt_name_tournament.getText().toString();
-        Log.d(TAG,""+tourname);
-
-        Call<Tournament> call_get = tournamentService.getTournament("1");
-        call_get.enqueue(new Callback<Tournament>() {
+        category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onResponse(Call<Tournament> call, Response<Tournament> response) {
-                Log.d(TAG,""+response.code());
-                if(response.code()==200) {
-                    Tournament tournament = response.body();
-                    Log.d(TAG, "El torneo recibido contiene: \n" + tournament);
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Call<Tournament> call_get = tournamentService.getTournament("1");//cambiar
+                call_get.enqueue(new Callback<Tournament>() {
+                    @Override
+                    public void onResponse(Call<Tournament> call, Response<Tournament> response) {
+                        Log.d(TAG, "" + response.code());
+                        if (response.code() == 200) {
+                            Tournament tournament = response.body();
+                            mostrarImagen(tournament);
+                        }
+                    }
 
-                    txt_club.setText("CANSTRIXÉ");
-                    txt_start_date.setText("24M");
-                    txt_end_date.setText("27M");
-                    txt_price.setText("24 euros");
-                    initSpinner(tournament);
-                }
+                    @Override
+                    public void onFailure(Call<Tournament> call, Throwable t) {
+
+                    }
+
+                });
             }
+
             @Override
-            public void onFailure(Call<Tournament> call, Throwable t) {
-                Log.d(TAG,t.getMessage());
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
     }
 
-    public void initSpinner(Tournament t){
+            public void initSpinner(Tournament t){
         ArrayAdapter<Category> category_adapter =
                 new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
                         t.getCategories()) ;
+        ArrayAdapter age = new ArrayAdapter<Category>(this,android.R.layout.simple_spinner_item);
+        /*for (int i = 0; i<category_adapter.getCount();i++){
+            Log.d("ages", String.valueOf(category_adapter.getCount()));
+            if(age.getCount() < 0) {
+                age.add(category_adapter.getItem(i));
+            }
+            for(int j=0; j<age.getCount();j++){
+                if(!age.getItem(j).equals(category_adapter.getItem(i))){
+                    age.add(category_adapter.getItem(i));
+                }
+            }
+        }
+        Log.d("datosage", age.getItem(1).toString());*/
         category.setAdapter(category_adapter);
     }
 
+    public void mostrarImagen(Tournament t){
+        List<Category> cat = t.getCategories();
+        ArrayList generos = new ArrayList();
+        int y=0;
+        for (int i = 0; i<cat.size();i++){
+            if(category.getSelectedItem().toString().equals(cat.get(i).toString())) {
+                generos.add(cat.get(i).getGenere().name);
+                y++;
+            }
+        }
+        Log.d("categorias", String.valueOf(generos));
+        int a = 0;
+        int b = 0;
+        int c = 0;
+        for (int i = 0; i<generos.size();i++){
+            if (generos.get(i).equals(TournamentGenere.X.name)) {
+                mixto.setImageAlpha(255);
+                a++;
+            }else{if(a==0){mixto.setImageAlpha(50);}}
+
+            if(generos.get(i).equals(TournamentGenere.F.name)){
+                femenino.setImageAlpha(255);
+                b++;
+            }else{if(b==0){femenino.setImageAlpha(50);}}
+
+            if(generos.get(i).equals(TournamentGenere.H.name)){
+                masculino.setImageAlpha(255);
+                c++;
+            }else{if(c==0){masculino.setImageAlpha(50);}}
+        }
+
+    }
     public void mostrarDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(Torneo.this);
         String tourname = txt_name_tournament.getText().toString();
-        Log.d(TAG,""+tourname);
-        Call<Tournament> call_get = tournamentService.getTournament(tourname.trim());
+        Log.d(TAG,""+tourname);//tourname.trim()
+        Call<Tournament> call_get = tournamentService.getTournament("1");//cambiar
         call_get.enqueue(new Callback<Tournament>() {
             @Override
             public void onResponse(Call<Tournament> call, Response<Tournament> response) {
                 Log.d(TAG,""+response.code());
                 if(response.code()==200) {
                     Tournament tournament = response.body();
-                    builder.setTitle(txt_name_tournament.getText());
+                    builder.setTitle(tournament.getName());
+                    assert tournament != null;
                     builder.setMessage(tournament.getDescription());
                 }
             }
@@ -172,8 +251,6 @@ public class Torneo extends AppActivityMenu {
             }
         }).show();
     }
-    public void AdapterCategory() {
 
-    }
 
 }

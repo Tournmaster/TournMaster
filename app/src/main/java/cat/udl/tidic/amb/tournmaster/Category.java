@@ -86,6 +86,9 @@ public class Category {
 
     @Override
     public String toString(){
-        return "" + this.age.name +"; " + this.genere.name;
+        return "" + this.age.name;
+    }
+    public void antirepeat(){
+
     }
 }
