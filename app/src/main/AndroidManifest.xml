@@ -20,14 +20,11 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-
+        <activity android:name=".SearchTournament"></activity>
+        <activity android:name=".TournamentAdapter" />
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@xml/actions" />
-
-
-
-        <activity android:name=".TournamentAdapter" />
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />

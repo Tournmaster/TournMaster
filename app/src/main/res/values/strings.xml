@@ -76,7 +76,6 @@
     <string name="g_nero">Género:</string>
     <string name="nombre">Nombre:</string>
     <string name="su_rol">Rol:</string>
-
     <string name="Perfil">Perfil</string>
     <string name="smash">Smash</string>
     <string name="reves">Reves</string>
@@ -86,6 +85,7 @@
     <string name="saque">Saque</string>
     <string name="right">Right</string>
     <string name="female_sex">female_Sex</string>
+    <string name="Torneig">Torneig</string>
     <string name="nombre_del_club">Nombre del club</string>
     <string name="guion">-</string>
     <string name="t_tulo_torneo">Título torneo</string>
@@ -93,5 +93,6 @@
     <string name="inscripciones_hasta_el_dia">Inscripciones hasta el dia:</string>
     <string name="precio_inscripci_n">Precio inscripción:</string>
     <string name="genero">Género:</string>
+
 
 </resources>
