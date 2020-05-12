@@ -18,6 +18,8 @@ import androidx.annotation.NonNull;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import cat.udl.tidic.amb.tournmaster.retrofit.RetrofitClientInstance;
+import cat.udl.tidic.amb.tournmaster.services.TournamentService;
 import cat.udl.tidic.amb.tournmaster.services.UserService;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,6 +30,7 @@ public class Torneo extends AppActivityMenu {
             "cat.udl.tidic.amd.tournmaster.EXTRA_TOURNAMENT";
     private String TAG ="TORNEO";
     private Intent intent;
+    private TournamentService tournamentService;
     private ImageView img_info;
     private TextView txt_info;
     private TextView txt_inscription;
@@ -44,6 +47,8 @@ public class Torneo extends AppActivityMenu {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_torneo);
+        tournamentService =  RetrofitClientInstance.
+                getRetrofitInstance().create(TournamentService.class);
         Intent intent = getIntent();
         if (intent.hasExtra(EXTRA_TOURNAMENT)) {
             setTitle("Perfil Publico");
@@ -104,7 +109,8 @@ public class Torneo extends AppActivityMenu {
             }
         });
         txt_inscription.setText("30 de febrero");
-        category.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, valores));
+
+        category.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item));
         category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id)
@@ -122,10 +128,10 @@ public class Torneo extends AppActivityMenu {
         txt_name_tournament.setText(intent.getStringExtra(EXTRA_TOURNAMENT));
         String tourname = txt_name_tournament.getText().toString();
         Log.d(TAG,""+tourname);
-        Call<User> call_get = userService.getTournament(tourname.trim());
-        call_get.enqueue(new Callback<User>() {
+        Call<Tournament> call_get = tournamentService.getTournament(tourname.trim());
+        call_get.enqueue(new Callback<Tournament>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
+            public void onResponse(Call<Tournament> call, Response<Tournament> response) {
                 Log.d(TAG,""+response.code());
                 if(response.code()==200) {
                     Tournament tournament = response.body();
@@ -136,7 +142,7 @@ public class Torneo extends AppActivityMenu {
                 }
             }
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(Call<Tournament> call, Throwable t) {
                 Log.d(TAG,t.getMessage());
             }
         });
@@ -145,10 +151,10 @@ public class Torneo extends AppActivityMenu {
         AlertDialog.Builder builder = new AlertDialog.Builder(Torneo.this);
         String tourname = txt_name_tournament.getText().toString();
         Log.d(TAG,""+tourname);
-        Call<User> call_get = userService.getTournament(tourname.trim());
-        call_get.enqueue(new Callback<User>() {
+        Call<Tournament> call_get = tournamentService.getTournament(tourname.trim());
+        call_get.enqueue(new Callback<Tournament>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
+            public void onResponse(Call<Tournament> call, Response<Tournament> response) {
                 Log.d(TAG,""+response.code());
                 if(response.code()==200) {
                     Tournament tournament = response.body();
@@ -157,7 +163,7 @@ public class Torneo extends AppActivityMenu {
                 }
             }
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(Call<Tournament> call, Throwable t) {
                 Log.d(TAG,t.getMessage());
             }
         });
@@ -167,6 +173,9 @@ public class Torneo extends AppActivityMenu {
 
             }
         }).show();
+    }
+    public void AdapterCategory() {
+
     }
 
 }

@@ -166,9 +166,6 @@ public class ProfilePublic extends AppCompatActivity {
                      rol.setText(user.getRol());
 
 
-
-
-
                  }
 
              }

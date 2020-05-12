@@ -13,6 +13,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import cat.udl.tidic.amb.tournmaster.retrofit.RetrofitClientInstance;
 import cat.udl.tidic.amb.tournmaster.preferences.PreferencesProvider;
+import cat.udl.tidic.amb.tournmaster.services.TournamentService;
 import cat.udl.tidic.amb.tournmaster.services.UserService;
 
 public class AppActivityMenu extends AppCompatActivity {
@@ -29,7 +30,6 @@ public class AppActivityMenu extends AppCompatActivity {
         // @JordiMateoUdL: Inicialitzem les preferencies i el userService, aixi ja no cal tornar a fer-ho
         userService = RetrofitClientInstance.
                 getRetrofitInstance().create(UserService.class);
-
         this.mPreferences = PreferencesProvider.providePreferences();
         token = this.mPreferences.getString("token", "");
 

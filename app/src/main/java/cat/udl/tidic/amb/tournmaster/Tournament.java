@@ -19,8 +19,10 @@ public class Tournament {
     private String facility;
     @SerializedName("categories")
     private String categories;
+    @SerializedName("description")
+    private String description;
 
-public Tournament(String name,String inscription,String start,String status,String type,String facility,String categories){
+public Tournament(String name,String inscription,String start,String status,String type,String facility,String categories, String description){
     this.name = name;
     this.inscription = inscription;
     this.start = start;
@@ -28,9 +30,18 @@ public Tournament(String name,String inscription,String start,String status,Stri
     this.type = type;
     this.facility = facility;
     this.categories = categories;
+    this.description = description;
 }
     public Tournament(){
 
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getId() {
