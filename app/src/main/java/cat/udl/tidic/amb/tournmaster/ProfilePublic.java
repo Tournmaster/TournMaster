@@ -91,8 +91,8 @@ public class ProfilePublic extends AppCompatActivity {
 
         this.mPreferences = PreferencesProvider.providePreferences();
         token = this.mPreferences.getString("token", "");
-        nom = findViewById(R.id.text_users);
-        sex = findViewById(R.id.text_sexo);
+        nom = findViewById(R.id.text_torneo_title);
+        sex = findViewById(R.id.text_end_date);
         boy = findViewById(R.id.img_boys);
         girl = findViewById(R.id.img_girls);
         boy = findViewById(R.id.img_boys);
@@ -164,9 +164,6 @@ public class ProfilePublic extends AppCompatActivity {
                      }
 
                      rol.setText(user.getRol());
-
-
-
 
 
                  }

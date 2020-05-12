@@ -2,6 +2,8 @@ package cat.udl.tidic.amb.tournmaster;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class Tournament {
     @SerializedName("id")
     private int id;
@@ -16,21 +18,48 @@ public class Tournament {
     @SerializedName("type")
     private String type;
     @SerializedName("facility")
-    private String facility;
+    private Facility facility;
     @SerializedName("categories")
-    private String categories;
+    private List<Category> categories;
+    @SerializedName("description")
+    private String description;
 
-public Tournament(String name,String inscription,String start,String status,String type,String facility,String categories){
-    this.name = name;
-    this.inscription = inscription;
-    this.start = start;
-    this.status= status;
-    this.type = type;
-    this.facility = facility;
-    this.categories = categories;
-}
+    public Tournament(int id, String name, String inscription, String start, String status,
+                      String type, Facility facility, List<Category> categories, String description) {
+        this.id = id;
+        this.name = name;
+        this.inscription = inscription;
+        this.start = start;
+        this.status = status;
+        this.type = type;
+        this.facility = facility;
+        this.categories = categories;
+        this.description = description;
+    }
+
+
+    @Override
+    public String toString(){
+
+        return "Id:" + id + " \n" +
+                "Name:" + name + " \n" +
+                "Inscription:" + inscription + " \n" +
+                "Start:" + start + " \n" +
+                "Status:" + status + " \n" +
+                "Type:" + type + " \n" +
+                "Categories:" + categories;
+    }
+
     public Tournament(){
 
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getId() {
@@ -81,21 +110,22 @@ public Tournament(String name,String inscription,String start,String status,Stri
         this.type = type;
     }
 
-    public String getFacility() {
+    public Facility getFacility() {
         return facility;
     }
 
-    public void setFacility(String facility) {
+    public void setFacility(Facility facility) {
         this.facility = facility;
     }
 
-    public String getCategories() {
+    public List<Category> getCategories() {
         return categories;
     }
 
-    public void setCategories(String categories) {
+    public void setCategories(List<Category> categories) {
         this.categories = categories;
     }
+
     @Override
     public boolean equals(Object o) {
 

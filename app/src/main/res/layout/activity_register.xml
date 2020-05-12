@@ -43,7 +43,7 @@
         android:contentDescription="@string/tourmasterlogo" />
 
     <TextView
-        android:id="@+id/text_users"
+        android:id="@+id/text_torneo_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/crear_cuenta"
@@ -56,7 +56,7 @@
         app:layout_constraintVertical_bias="0.185" />
 
     <TextView
-        android:id="@+id/text_sexo"
+        android:id="@+id/text_end_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nombre_de_usuario"
@@ -64,7 +64,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.344"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_users"
+        app:layout_constraintTop_toBottomOf="@+id/text_torneo_title"
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText

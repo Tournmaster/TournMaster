@@ -21,6 +21,7 @@ import androidx.annotation.Nullable;
 
 import com.squareup.picasso.Picasso;
 
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
@@ -81,10 +82,10 @@ public class Perfil extends AppActivityMenu {
 
         // @JordiMateoUdl: Ara els propis de la vista
         img_photo = findViewById(R.id.img_perfil);
-        user = findViewById(R.id.text_users);
+        user = findViewById(R.id.text_torneo_title);
         mail = findViewById(R.id.text_mail);
         rol = findViewById(R.id.text_rol);
-        sex = findViewById(R.id.text_sexo);
+        sex = findViewById(R.id.text_end_date);
         name = findViewById(R.id.ed_name);
         surname = findViewById(R.id.ed_surname);
         birthday = findViewById(R.id.text_birthday);
