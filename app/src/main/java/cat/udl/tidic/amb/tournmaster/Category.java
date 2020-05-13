@@ -27,11 +27,11 @@ enum TournamentAge {
         name = _name;
     }
     public static ArrayList<String> names(){
-        ArrayList<String> names = new ArrayList<>();
-        for(TournamentAge age: TournamentAge.values()){
-            names.add(age.name);
-        }
-        return names;
+            ArrayList<String> names = new ArrayList<>();
+            for(TournamentAge age: TournamentAge.values()){
+                names.add(age.name);
+            }
+            return names;
     }
 }
 

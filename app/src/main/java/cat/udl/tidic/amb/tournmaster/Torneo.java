@@ -47,6 +47,7 @@ public class Torneo extends AppActivityMenu {
     private TextView txt_name_tournament;
     private View rootView;
     private String tourname;
+    private Tournament tournament;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,7 +107,7 @@ public class Torneo extends AppActivityMenu {
 
 
 
-       tourname = intent.getStringExtra(EXTRA_TOURNAMENT);
+        tourname = intent.getStringExtra(EXTRA_TOURNAMENT);
         Log.d(TAG,""+tourname);
 
         Call<Tournament> call_get = tournamentService.getTournament(tourname);//cambiar
@@ -115,7 +116,7 @@ public class Torneo extends AppActivityMenu {
             public void onResponse(Call<Tournament> call, Response<Tournament> response) {
                 Log.d(TAG,""+response.code());
                 if(response.code()==200) {
-                    Tournament tournament = response.body();
+                    tournament = response.body();
                     Log.d(TAG, "El torneo recibido contiene: \n" + tournament);
                     assert tournament != null;
                     txt_club.setText(tournament.getOwner());
@@ -136,13 +137,13 @@ public class Torneo extends AppActivityMenu {
         img_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mostrarDialog();
+                openDialog();
             }
         });
         txt_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mostrarDialog();
+                openDialog();
             }
         });
         category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -252,8 +253,10 @@ public class Torneo extends AppActivityMenu {
             }
         }).show();
     }
+
+
     public void openDialog() {
-        DialogDescription dialogDesc = new DialogDescription().newInstance(this,tour);
+        DialogDescription dialogDesc =  DialogDescription.newInstance(this, tournament);
         dialogDesc.show(getSupportFragmentManager(),"Dialog description");
 
     }

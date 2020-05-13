@@ -39,9 +39,10 @@ public class DialogDescription extends AppCompatDialogFragment {
     private TextView desc;
     private Tournament tournament;
     private TournamentService tournamentService;
-    public static DialogDescription newInstance(Torneo torneo){
+    public static DialogDescription newInstance(Torneo torneo, Tournament tournament){
         DialogDescription dialog = new DialogDescription();
         dialog.torneo = torneo;
+        dialog.tournament = tournament;
         return dialog;
     }
 
@@ -53,23 +54,14 @@ public class DialogDescription extends AppCompatDialogFragment {
                 .setView(rootView)
                 .setTitle("Descripcion del torneo")
                 .setCancelable(true)
-                .setPositiveButton("Cargar", null)
+                .setPositiveButton("Cerrar", null)
                 .create();
-        alertDialog.setOnShowListener( dialog -> onDialogShow(alertDialog));
         return alertDialog;
     }
     private void init(){
-        rootView = LayoutInflater.from(getContext()).inflate(R.layout.layout_dialog, null, false);
-        Intent intent = getIntent();
-        Log.d(TAG, intent.getStringExtra(EXTRA_TOURNAMENT) + "");
-        if (intent.hasExtra(EXTRA_TOURNAMENT)) {
-            setTitle("Torneo");
-
-        }
-        tournamentService =  RetrofitClientInstance.
-                getRetrofitInstance().create(TournamentService.class);
-        Call<Tournament> call_get = tournamentService.getTournament(tourname);
-        Log.d(TAG, "Photo URl:");
+        rootView = LayoutInflater.from(getContext()).inflate(R.layout.activity_dialog_description, null, false);
+        Log.d(TAG, tournament.toString());
+        ((TextView) rootView.findViewById(R.id.text_descriptionTour)).setText(tournament.getDescription());
         //Picasso.get().load(user.getPhoto()).into(image_photo);
 
 
