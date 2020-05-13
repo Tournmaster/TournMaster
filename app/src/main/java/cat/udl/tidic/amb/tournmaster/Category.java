@@ -2,6 +2,8 @@ package cat.udl.tidic.amb.tournmaster;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 enum TournamentGenere {
     H("H","Male"),F("F","Female"),X("X","Mixt");
 
@@ -23,6 +25,13 @@ enum TournamentAge {
     TournamentAge(String _id, String _name){
         id = _id;
         name = _name;
+    }
+    public static ArrayList<String> names(){
+        ArrayList<String> names = new ArrayList<>();
+        for(TournamentAge age: TournamentAge.values()){
+            names.add(age.name);
+        }
+        return names;
     }
 }
 

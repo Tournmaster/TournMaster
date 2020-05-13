@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Tournament {
     @SerializedName("id")
-    private int id;
+    private String id;
     @SerializedName("name")
     private String name;
     @SerializedName("inscription_type")
@@ -31,7 +31,7 @@ public class Tournament {
     private String owner;
     @SerializedName("price_1")
     private String price_1;
-    public Tournament(int id, String name, String inscription, String start, String status,
+    public Tournament(String id, String name, String inscription, String start, String status,
                       String type, Facility facility, List<Category> categories, String description, String owner, String finish, String price_1, String finish_register_date) {
         this.id = id;
         this.name = name;
@@ -77,11 +77,11 @@ public class Tournament {
         this.description = description;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

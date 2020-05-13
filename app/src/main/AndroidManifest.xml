@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="cat.udl.tidic.amb.tournmaster">
-
     <!-- Internet Permission -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -20,11 +19,14 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".SearchTournament"></activity>
+        <activity android:name=".DialogDescription"></activity>
+        <activity android:name=".SearchTournament" />
         <activity android:name=".TournamentAdapter" />
+
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@xml/actions" />
+
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
@@ -39,7 +41,6 @@
         <activity android:name=".Login" />
         <activity android:name=".Register" />
         <activity android:name=".MainActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

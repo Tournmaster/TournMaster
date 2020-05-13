@@ -79,6 +79,7 @@ public class SearchTournament extends AppCompatActivity {
             @Override
             public void onItemClick(Tournament tournmanet) {
                 Intent intent = new Intent(SearchTournament.this, Torneo.class);
+                Log.d(TAG, tournmanet.getId() + "");
                 intent.putExtra(Torneo.EXTRA_TOURNAMENT, tournmanet.getId());
                 startActivityForResult(intent, EDIT_EVENT);
             }

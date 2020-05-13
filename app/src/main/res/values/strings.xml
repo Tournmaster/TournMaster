@@ -93,6 +93,7 @@
     <string name="inscripciones_hasta_el_dia">Inscripciones hasta el dia:</string>
     <string name="precio_inscripci_n">Precio inscripción:</string>
     <string name="genero">Género:</string>
+    <string name="usuario">Usuario:</string>
 
 
 </resources>

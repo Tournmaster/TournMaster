@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -43,6 +45,8 @@ public class Torneo extends AppActivityMenu {
     private TextView txt_start_date;
     private TextView txt_end_date;
     private TextView txt_name_tournament;
+    private View rootView;
+    private String tourname;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +54,7 @@ public class Torneo extends AppActivityMenu {
         tournamentService =  RetrofitClientInstance.
                 getRetrofitInstance().create(TournamentService.class);
         Intent intent = getIntent();
+        Log.d(TAG, intent.getStringExtra(EXTRA_TOURNAMENT) + "");
         if (intent.hasExtra(EXTRA_TOURNAMENT)) {
             setTitle("Torneo");
 
@@ -101,10 +106,10 @@ public class Torneo extends AppActivityMenu {
 
 
 
-        String tourname = txt_name_tournament.getText().toString();
+       tourname = intent.getStringExtra(EXTRA_TOURNAMENT);
         Log.d(TAG,""+tourname);
 
-        Call<Tournament> call_get = tournamentService.getTournament("1");//cambiar
+        Call<Tournament> call_get = tournamentService.getTournament(tourname);//cambiar
         call_get.enqueue(new Callback<Tournament>() {
             @Override
             public void onResponse(Call<Tournament> call, Response<Tournament> response) {
@@ -112,9 +117,10 @@ public class Torneo extends AppActivityMenu {
                 if(response.code()==200) {
                     Tournament tournament = response.body();
                     Log.d(TAG, "El torneo recibido contiene: \n" + tournament);
-                    txt_club.setText("tournament.getOwner()");
+                    assert tournament != null;
+                    txt_club.setText(tournament.getOwner());
                     txt_start_date.setText(tournament.getStart());
-                    txt_end_date.setText("tournament.getFinish()");
+                    txt_end_date.setText(tournament.getFinish());
                     txt_price.setText(tournament.getPrice_1());
                     txt_inscription.setText(tournament.getFinish_register_date());
                     txt_name_tournament.setText(tournament.getName());
@@ -142,7 +148,8 @@ public class Torneo extends AppActivityMenu {
         category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Call<Tournament> call_get = tournamentService.getTournament("1");//cambiar
+                String tourname = intent.getStringExtra(EXTRA_TOURNAMENT);
+                Call<Tournament> call_get = tournamentService.getTournament(tourname);//cambiar
                 call_get.enqueue(new Callback<Tournament>() {
                     @Override
                     public void onResponse(Call<Tournament> call, Response<Tournament> response) {
@@ -169,22 +176,10 @@ public class Torneo extends AppActivityMenu {
     }
 
             public void initSpinner(Tournament t){
-        ArrayAdapter<Category> category_adapter =
+        ArrayAdapter<String> category_adapter =
                 new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
-                        t.getCategories()) ;
-        ArrayAdapter age = new ArrayAdapter<Category>(this,android.R.layout.simple_spinner_item);
-        /*for (int i = 0; i<category_adapter.getCount();i++){
-            Log.d("ages", String.valueOf(category_adapter.getCount()));
-            if(age.getCount() < 0) {
-                age.add(category_adapter.getItem(i));
-            }
-            for(int j=0; j<age.getCount();j++){
-                if(!age.getItem(j).equals(category_adapter.getItem(i))){
-                    age.add(category_adapter.getItem(i));
-                }
-            }
-        }
-        Log.d("datosage", age.getItem(1).toString());*/
+                        TournamentAge.names()) ;
+
         category.setAdapter(category_adapter);
     }
 
@@ -220,22 +215,31 @@ public class Torneo extends AppActivityMenu {
         }
 
     }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("DIALOGDESC", "" + resultCode);
+
+
+    }
     public void mostrarDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(Torneo.this);
-        String tourname = txt_name_tournament.getText().toString();
-        Log.d(TAG,""+tourname);//tourname.trim()
-        Call<Tournament> call_get = tournamentService.getTournament("1");//cambiar
-        call_get.enqueue(new Callback<Tournament>() {
-            @Override
-            public void onResponse(Call<Tournament> call, Response<Tournament> response) {
-                Log.d(TAG,""+response.code());
-                if(response.code()==200) {
-                    Tournament tournament = response.body();
-                    builder.setTitle(tournament.getName());
-                    assert tournament != null;
-                    builder.setMessage(tournament.getDescription());
-                }
-            }
+                AlertDialog.Builder builder = new AlertDialog.Builder(Torneo.this);
+                Intent intent = getIntent();
+                String tourname = intent.getStringExtra(EXTRA_TOURNAMENT);
+                Log.d(TAG,""+tourname);//tourname.trim()
+                Call<Tournament> call_get = tournamentService.getTournament(tourname);//cambiar
+                call_get.enqueue(new Callback<Tournament>() {
+                    @Override
+                    public void onResponse(Call<Tournament> call, Response<Tournament> response) {
+                        Log.d(TAG,""+response.code());
+                        if(response.code()==200) {
+                            Tournament tournament = response.body();
+                            builder.setView(rootView);
+                            builder.setTitle("tournament.getName()");
+                            builder.setMessage(tournament.getDescription());
+                            builder.create();
+                        }
+                    }
             @Override
             public void onFailure(Call<Tournament> call, Throwable t) {
                 Log.d(TAG,t.getMessage());
@@ -247,6 +251,11 @@ public class Torneo extends AppActivityMenu {
 
             }
         }).show();
+    }
+    public void openDialog() {
+        DialogDescription dialogDesc = new DialogDescription().newInstance(this,tour);
+        dialogDesc.show(getSupportFragmentManager(),"Dialog description");
+
     }
 
 
