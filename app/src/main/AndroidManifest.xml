@@ -19,7 +19,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".DialogDescription"></activity>
+        <activity android:name=".MatchRounds"></activity>
+        <activity android:name=".DialogDescription" />
         <activity android:name=".SearchTournament" />
         <activity android:name=".TournamentAdapter" />
 

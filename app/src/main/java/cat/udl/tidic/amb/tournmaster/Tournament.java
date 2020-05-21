@@ -27,12 +27,14 @@ public class Tournament {
     private List<Category> categories;
     @SerializedName("description")
     private String description;
+    @SerializedName("rounds")
+    private List<Rounds> rounds;
     @SerializedName("owner")
     private String owner;
     @SerializedName("price_1")
     private String price_1;
     public Tournament(String id, String name, String inscription, String start, String status,
-                      String type, Facility facility, List<Category> categories, String description, String owner, String finish, String price_1, String finish_register_date) {
+                      String type, Facility facility, List<Category> categories, String description, String owner, String finish, String price_1, String finish_register_date,List<Rounds> rounds) {
         this.id = id;
         this.name = name;
         this.inscription = inscription;
@@ -46,9 +48,16 @@ public class Tournament {
         this.finish = finish;
         this.price_1 = price_1;
         this.finish_register_date = finish_register_date;
+        this.rounds = rounds;
     }
 
+    public List<Rounds> getRounds() {
+        return rounds;
+    }
 
+    public void setRounds(List<Rounds> rounds) {
+        this.rounds = rounds;
+    }
 
     @Override
     public String toString(){

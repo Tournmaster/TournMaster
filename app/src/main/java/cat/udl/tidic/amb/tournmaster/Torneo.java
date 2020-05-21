@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -259,6 +260,23 @@ public class Torneo extends AppActivityMenu {
         DialogDescription dialogDesc =  DialogDescription.newInstance(this, tournament);
         dialogDesc.show(getSupportFragmentManager(),"Dialog description");
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_partidos, menu);
+        return true;
+
+    }
+    @Override public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_match) {
+            Intent intent = new Intent(Torneo.this,MatchRounds.class);
+            intent.putExtra(Torneo.EXTRA_TOURNAMENT, tournament.getId());
+            startActivity(intent);
+            Log.d(TAG, "Here we need to launch settings...");
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 

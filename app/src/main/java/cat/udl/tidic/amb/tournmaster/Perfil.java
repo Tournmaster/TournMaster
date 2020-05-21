@@ -302,6 +302,7 @@ public class Perfil extends AppActivityMenu {
         actualizar.setVisibility(View.INVISIBLE);
         rigth.setVisibility(View.INVISIBLE);
         left.setVisibility(View.INVISIBLE);
+        phone.setEnabled(false);
     }
 
 
