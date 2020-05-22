@@ -4,6 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cat.udl.tidic.amb.tournmaster.retrofit.RetrofitClientInstance;
 import cat.udl.tidic.amb.tournmaster.services.TournamentService;
@@ -30,12 +35,14 @@ public class MatchRounds extends AppCompatActivity {
     private Intent intent;
     private String tourname;
     private Tournament tournament;
+    private Spinner spinner_category;
     ArrayList<Tournament> tournaments_data = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tournament_draw);
         intent = getIntent();
+        spinner_category = findViewById(R.id.spinner_category);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.Buscar);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -87,6 +94,8 @@ public class MatchRounds extends AppCompatActivity {
                     tournament = response.body();
                     Log.d(TAG, "El torneo recibido contiene: \n" + tournament);
                     initRecicleview();
+                    spinnerCategory();
+
 
 
                 }
@@ -113,6 +122,41 @@ public class MatchRounds extends AppCompatActivity {
         tournamentDrawAdapter = new MatchesAdapter(new MatchesDiffCallBack());
         tournamentDrawsListView.setAdapter(tournamentDrawAdapter);
         tournamentDrawAdapter.submitList(tournament.getRounds().get(0).getMatches());
+
+
+
+
+
+
+
+    }
+
+    public void spinnerCategory(){
+
+        ArrayAdapter<String> category_adapter =
+                new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
+        for(int i=0; i<tournament.getRounds().size(); i++) {
+            category_adapter.add(tournament.getRounds().get(i).getId());
+        }
+        spinner_category.setAdapter(category_adapter);
+
+        spinner_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                List<Rounds> cat = tournament.getRounds();
+                for(int i = 0; i<cat.size(); i++){
+                    if(spinner_category.getSelectedItem().equals(cat.get(i).getId())){
+                        Log.d("TAG", String.valueOf(i));
+                        tournamentDrawAdapter.submitList(tournament.getRounds().get(i).getMatches());
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
 

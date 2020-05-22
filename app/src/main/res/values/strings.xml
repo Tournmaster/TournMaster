@@ -94,6 +94,12 @@
     <string name="precio_inscripci_n">Precio inscripción:</string>
     <string name="genero">Género:</string>
     <string name="usuario">Usuario:</string>
+    <string-array name="sort_types">
+        <item name="0">Vuitens de final</item>
+        <item name="1">Quarts de final</item>
+        <item name ="2">Semifinals</item>
+        <item name="3">Final</item>
+    </string-array>
 
 
 </resources>

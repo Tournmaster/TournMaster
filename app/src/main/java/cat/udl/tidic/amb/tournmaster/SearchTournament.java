@@ -52,7 +52,7 @@ public class SearchTournament extends AppCompatActivity {
                         return true;
                     case R.id.Partidos:
                         startActivity(new Intent(getApplicationContext(),
-                                Partidos.class));
+                                     Partidos.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.Buscar:
