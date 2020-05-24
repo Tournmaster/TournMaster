@@ -230,7 +230,6 @@ public class User {
 
         // Compare the data members and return accordingly
         return this.id == e.getId()
-                && this.username.equals(e.getUsername())
                 && this.name.equals(e.getName());
 
     }
