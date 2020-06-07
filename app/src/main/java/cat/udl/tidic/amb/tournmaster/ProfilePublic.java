@@ -13,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.squareup.picasso.Picasso;
 
 import cat.udl.tidic.amb.tournmaster.preferences.PreferencesProvider;
 import cat.udl.tidic.amb.tournmaster.retrofit.RetrofitClientInstance;
@@ -135,7 +134,7 @@ public class ProfilePublic extends AppCompatActivity {
                          position.setText("Derecha");
                      }
                      Log.d(TAG, "Photo URl:" + user.getPhoto());
-                     Picasso.get().load(user.getPhoto()).into(img);
+                     //Picasso.get().load(user.getPhoto()).into(img);
                      name.setText(user.getName());
                      mail.setText(user.getEmail());
                      matchname.setText(user.getMatchname());

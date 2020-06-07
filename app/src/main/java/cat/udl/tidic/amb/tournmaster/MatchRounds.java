@@ -132,7 +132,7 @@ public class MatchRounds extends AppCompatActivity {
     }
 
     public void spinnerCategory(){
-
+        String [] opciones ={"Octavos de final","Quartos de final","Semifinal","Final"};
         ArrayAdapter<String> category_adapter =
                 new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
         for(int i=0; i<tournament.getRounds().size(); i++) {
