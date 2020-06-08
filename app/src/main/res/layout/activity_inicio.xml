@@ -9,9 +9,11 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="128dp"
-        android:layout_height="119dp"
-        android:text="Button"
+        android:layout_width="225dp"
+        android:layout_height="52dp"
+        android:background="@drawable/borde_redondo"
+        android:text="Crear Torneo"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.445"
@@ -21,19 +23,25 @@
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="130dp"
-        android:layout_height="123dp"
+        android:layout_width="225dp"
+        android:layout_height="52dp"
         android:layout_marginTop="36dp"
-        android:text="Button"
+        android:background="@drawable/borde_redondo"
+        android:onClick="SearchTour"
+        android:text="Unirse Torneo"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.448"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button" />
+
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottomNavigationView"/>
+        android:layout_above="@id/bottomNavigationView"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-16dp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
@@ -46,6 +54,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button2"
         app:layout_constraintVertical_bias="1.0"
-        app:menu="@menu/menu_bottom" />
+        app:menu="@menu/menu_bottom"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

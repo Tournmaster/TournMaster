@@ -46,7 +46,7 @@
         app:srcCompat="@mipmap/tournmaster" />
 
     <TextView
-        android:id="@+id/text_users"
+        android:id="@+id/text_torneo_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/crear_cuenta"
@@ -101,7 +101,7 @@
         app:layout_constraintVertical_bias="0.295" />
 
     <TextView
-        android:id="@+id/text_sexo"
+        android:id="@+id/text_end_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nombre_de_usuario"

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">TournMaster</string>
     <string name="login">Login!</string>
     <string name="username">username</string>
@@ -47,7 +47,8 @@
     <string name="posici_n_en_la_pista">Posición en la pista</string>
     <string name="tu_pareja_favorita">Tu pareja favorita</string>
     <string name="tiempo_jugado">Tiempo jugado</string>
-    <string name="golpeo_preferido">Golpeo preferido</string>
+    <string name="tiempo_jugado2">Tiempo jugado:</string>
+    <string name="golpeo_preferido">Golpeo preferido:</string>
     <string name="tu_club">Tu club</string>
     <string name="licencia">Licencia</string>
     <string name="Actualizar_perfil">Actualizar_perfil</string>
@@ -58,5 +59,47 @@
     <string name="pos_izquierda">Izquierda</string>
     <string name="Posicion">Tu Posición</string>
     <string name="Nombre_real">Tu Nombre</string>
+    <string name="Selecciona_Imagen">Selecciona una imagen</string>
+    <string name="Abrir">Abrir Galeria</string>
+    <string name="Cancelar">Cancelar</string>
+    <string name="Selecionar_filtros">Seleccionar filtros</string>
+    <string name="buscar_sexo">Buscar por género</string>
+    <string name="buscar_posicion">Buscar por posición </string>
+    <string name="buscar_golpe">Buscar por golpe favorito </string>
+    <string name="Inicio">Inicio</string>
+    <string name="Partidos">Partidos</string>
+    <string name="Buscar">Buscar</string>
+    <string name="email">Email:</string>
+    <string name="compa_ero_favorito">Compañero favorito:</string>
+    <string name="posici_n">Posición:</string>
+    <string name="su_club">Club:</string>
+    <string name="g_nero">Género:</string>
+    <string name="nombre">Nombre:</string>
+    <string name="su_rol">Rol:</string>
+    <string name="Perfil">Perfil</string>
+    <string name="smash">Smash</string>
+    <string name="reves">Reves</string>
+    <string name="volea">Volea</string>
+    <string name="globo">Globo</string>
+    <string name="cortada">Cortada</string>
+    <string name="saque">Saque</string>
+    <string name="right">Right</string>
+    <string name="female_sex">female_Sex</string>
+    <string name="Torneig">Torneig</string>
+    <string name="nombre_del_club">Nombre del club</string>
+    <string name="guion">-</string>
+    <string name="t_tulo_torneo">Título torneo</string>
+    <string name="categor_as">Categorías:</string>
+    <string name="inscripciones_hasta_el_dia">Inscripciones hasta el dia:</string>
+    <string name="precio_inscripci_n">Precio inscripción:</string>
+    <string name="genero">Género:</string>
+    <string name="usuario">Usuario:</string>
+    <string-array name="sort_types">
+        <item name="0">Vuitens de final</item>
+        <item name="1">Quarts de final</item>
+        <item name ="2">Semifinals</item>
+        <item name="3">Final</item>
+    </string-array>
+
 
 </resources>

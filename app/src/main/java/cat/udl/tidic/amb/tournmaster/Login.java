@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 import cat.udl.tidic.amb.tournmaster.preferences.PreferencesProvider;
+import cat.udl.tidic.amb.tournmaster.retrofit.RetrofitClientInstance;
 import cat.udl.tidic.amb.tournmaster.services.UserService;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -132,22 +133,22 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        if (!token.equals("")){
-
-            intent = new Intent(Login.this,Inicio.class);
-            startActivity(intent);
-
-            tokenLabel.setVisibility(View.INVISIBLE);
-            tokenTV.setText(token);
-            usernameET.setVisibility(View.INVISIBLE);
-            passwordET.setVisibility(View.INVISIBLE);
-            createToken.setVisibility(View.INVISIBLE);
-            tokenTV.setVisibility(View.INVISIBLE);
-            miss_init.setText(getResources().getString(R.string.Tittle));
-            miss_init.setVisibility(View.VISIBLE);
-
-            // users.setText(usernameET.getText().toString());
-        }
+//        if (!token.equals("")){
+//
+//            intent = new Intent(Login.this,Inicio.class);
+//            startActivity(intent);
+//
+//            tokenLabel.setVisibility(View.INVISIBLE);
+//            tokenTV.setText(token);
+//            usernameET.setVisibility(View.INVISIBLE);
+//            passwordET.setVisibility(View.INVISIBLE);
+//            createToken.setVisibility(View.INVISIBLE);
+//            tokenTV.setVisibility(View.INVISIBLE);
+//            miss_init.setText(getResources().getString(R.string.Tittle));
+//            miss_init.setVisibility(View.VISIBLE);
+//
+//            // users.setText(usernameET.getText().toString());
+//        }
 
         createToken.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -161,7 +162,8 @@ public class Login extends AppCompatActivity {
                     byte[] bytes = token_decoded.getBytes(StandardCharsets.UTF_8);
                     String _token = Base64.encodeToString(bytes, Base64.DEFAULT);
                     _token = ("Authentication: " + _token).trim();
-                    Call<ResponseBody> call_post = userService.createToken(_token);
+                    mPreferences.edit().putString("token",_token).commit();
+                    Call<ResponseBody> call_post = userService.createToken();
                     call_post.enqueue(new Callback<ResponseBody>() {
 
                         @Override
@@ -189,6 +191,7 @@ public class Login extends AppCompatActivity {
 
                                 miss.setText(getResources().getString(R.string.Error_Login));
                                 miss.setVisibility(View.VISIBLE);
+                                mPreferences.edit().remove("token").apply();
                             }
                         }
 
@@ -199,6 +202,7 @@ public class Login extends AppCompatActivity {
 
                             miss_conx.setText(getResources().getString(R.string.Error_Conex));
                             miss_conx.setVisibility(View.VISIBLE);
+                            mPreferences.edit().remove("token").apply();
 
 
                         }

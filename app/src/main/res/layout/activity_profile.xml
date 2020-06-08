@@ -144,7 +144,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/text_users"
+                    android:id="@+id/text_torneo_title"
                     android:layout_width="151dp"
                     android:layout_height="24dp"
                     android:layout_marginTop="4dp"
@@ -170,7 +170,7 @@
                     app:layout_constraintEnd_toEndOf="@+id/imageView"
                     app:layout_constraintHorizontal_bias="0.497"
                     app:layout_constraintStart_toStartOf="@+id/img_perfil"
-                    app:layout_constraintTop_toTopOf="@+id/text_users"
+                    app:layout_constraintTop_toTopOf="@+id/text_torneo_title"
                     app:layout_constraintVertical_bias="0.058" />
 
                 <ImageView
@@ -185,7 +185,7 @@
                     app:srcCompat="@mipmap/tournmaster" />
 
                 <EditText
-                    android:id="@+id/text_sexo"
+                    android:id="@+id/text_end_date"
                     android:layout_width="72dp"
                     android:layout_height="29dp"
                     android:autofillHints=""
@@ -204,6 +204,7 @@
                     android:id="@+id/img_perfil"
                     android:layout_width="114dp"
                     android:layout_height="73dp"
+                    android:background="@drawable/circle"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
